@@ -46,7 +46,7 @@ public class EmailService {
 
         // Sort imports by date or ID to get the latest one
         ImportRecord latestImport = imports.stream()
-                .max(Comparator.comparing(ImportRecord::getId)) // Replace with appropriate field
+                .max(Comparator.comparing(ImportRecord::getId))
                 .orElseThrow(() -> new RuntimeException("Unable to determine latest import"));
 
         int quantity = latestImport.getQuantityOrdered();
