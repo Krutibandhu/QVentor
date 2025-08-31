@@ -173,34 +173,25 @@
 
     <div class="report-cards">
       <div class="report-card">
-        <div class="card-value" id="totalProducts">0</div>
+        <div class="card-value" id="totalProducts">loading...</div>
         <div class="card-label">Total Products</div>
       </div>
       <div class="report-card">
-        <div class="card-value" id="totalSold">0</div>
+        <div class="card-value" id="totalSold">loading...</div>
         <div class="card-label">Products Sold</div>
       </div>
       <div class="report-card">
-        <div class="card-value" id="pendingOrders">0</div>
+        <div class="card-value" id="pendingOrders">loading...</div>
         <div class="card-label">Pending Orders</div>
       </div>
       <div class="report-card">
-        <div class="card-value" id="totalRevenue">$0</div>
+        <div class="card-value" id="totalRevenue">₹loading...</div>
         <div class="card-label">Total Revenue</div>
       </div>
     </div>
 
+    <script type="module" src="/js/report.js"></script>
     <script>
-      // Dynamic example data
-      const totalProducts = 120;
-      const totalSold = 80;
-      const pendingOrders = 15;
-      const totalRevenue = 2000;
-
-      document.getElementById("totalProducts").textContent = totalProducts;
-      document.getElementById("totalSold").textContent = totalSold;
-      document.getElementById("pendingOrders").textContent = pendingOrders;
-      document.getElementById("totalRevenue").textContent = "Rs" + totalRevenue;
 
       // GSAP animations
       // Navbar slides down
