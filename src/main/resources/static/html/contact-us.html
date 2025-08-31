@@ -205,6 +205,36 @@
       .side-arrow.back:hover {
         background-color: #9a774a;
       }
+      .sendBtn {
+        background: #0a1a3d; /* dark blue */
+        color: #ffffff; /* white text */
+        border: none;
+        padding: 10px 20px;
+        border-radius: 8px;
+        font-size: 16px;
+        font-weight: 500;
+        cursor: pointer;
+        transition: 0.3s ease;
+        margin-left: 12px;
+        margin-top: 17px; /* space from social icons */
+      }
+
+      .sendBtn:hover {
+        background: #d4af7a; /* gold on hover */
+        color: #0a1a3d;
+        transform: scale(1.05);
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+      }
+
+      /* Mobile screens */
+      @media (max-width: 576px) {
+        .sendBtn {
+          font-size: 14px;
+          padding: 7px 15px;
+          margin-left: 2px;
+          border-radius: 6px;
+        }
+      }
 
       /* Footer */
       footer {
@@ -225,7 +255,15 @@
         text-decoration: underline;
       }
 
-      /* Mobile adjustments */
+      /* Tablet and Mobile adjustments */
+      @media (max-width: 992px) {
+        .logo {
+          font-size: 1.8rem;
+        }
+        .nav-links a {
+          font-size: 1em;
+        }
+      }
       @media (max-width: 768px) {
         .nav-links {
           display: none;
@@ -236,12 +274,38 @@
           background-color: var(--dark-blue);
           width: 220px;
           padding: 10px;
+          border-radius: 8px;
         }
         .nav-links.show {
           display: flex;
         }
         .menu-icon {
           display: block;
+        }
+        .mission-contact-container {
+          padding: 30px 20px;
+          margin-right: 40px;
+        }
+        .box {
+          min-width: unset;
+          width: 100%;
+        }
+        .box h2 {
+          font-size: 1.6em;
+        }
+      }
+      @media (max-width: 480px) {
+        .logo {
+          font-size: 1.5rem;
+        }
+        .box {
+          padding: 20px;
+        }
+        .box h2 {
+          font-size: 1.4em;
+        }
+        .feedback-form button {
+          width: 100%;
         }
       }
     </style>
@@ -251,7 +315,7 @@
     <header class="navbar">
       <div class="logo"><span class="q">Q</span>Ventor</div>
       <nav class="nav-links">
-        <a href="/html/index.html">Home</a>
+        <a href="/index.html">Home</a>
         <a href="/html/admin.html">Admin</a>
         <a href="/html/employee-login.html">Employee</a>
         <a href="/html/our-service.html">Our Services</a>
@@ -292,6 +356,7 @@
               ><i class="fab fa-instagram"></i
             ></a>
           </div>
+          <button type="button" class="sendBtn">Send</button>
         </div>
       </div>
 
