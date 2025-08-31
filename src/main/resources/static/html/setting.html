@@ -3,59 +3,169 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Settings - QVentor</title>
-    <link rel="stylesheet" href="/css/style.css" />
+    <title>Settings</title>
     <style>
-      body {
-        background-color: #0a1a3d;
-        color: white;
-        padding: 90px 20px 20px;
-        margin: 0;
+      :root {
+        --dark-blue: #0a1a3d;
+        --gold: #d4af7a;
+        --white: #ffffff;
       }
-      /* Sticky Navbar */
+
+      /* Reset */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        font-family: "Open Sans", sans-serif;
+        background-color: var(--dark-blue);
+        color: var(--white);
+      }
       .navbar {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        background-color: #0a1a3d;
-        padding: 15px 20px;
         display: flex;
         justify-content: space-between;
         align-items: center;
-        z-index: 999;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+        padding: 1rem 2rem;
+        background-color: var(--dark-blue);
+        position: sticky;
+        top: 0;
+        z-index: 1000;
       }
 
-      .navbar .logo {
-        font-size: 24px;
+      .logo {
+        font-size: 2rem;
         font-weight: bold;
-        color: white;
+        font-family: "Playfair Display", serif;
       }
 
-      .navbar .nav-links a {
+      .logo .q {
+        color: var(--gold);
+      }
+
+      .nav-links a {
         color: white;
         text-decoration: none;
-        margin-left: 20px;
-        transition: color 0.3s ease;
+        padding: 8px 12px;
+        font-size: 1.2em;
       }
 
-      .navbar .nav-links a:hover {
-        color: #b08a57;
+      h1 {
+        margin: 30px 0 20px;
+        color: var(--gold);
+        font-size: 28px;
+      }
+      /* Navbar */
+      .navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem 2rem;
+        background: var(--dark-blue);
+        color: var(--white);
+        position: sticky;
+        top: 0;
+        z-index: 1000;
       }
 
-      .back-btn {
-        background-color: #b08a57;
-        color: white;
-        padding: 8px 15px;
-        border: none;
-        border-radius: 5px;
+      .logo {
+        font-size: 1.8rem;
+        font-weight: bold;
+      }
+      .logo .q {
+        color: var(--gold);
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 1.5rem;
+      }
+      .nav-links a {
+        color: var(--white);
+        text-decoration: none;
+        position: relative;
+      }
+      .nav-links a:hover {
+        color: var(--gold);
+      }
+      .nav-links a.active {
+        color: var(--gold);
+        font-weight: bold;
+      }
+
+      .menu-icon {
+        display: none;
+        font-size: 1.8rem;
         cursor: pointer;
-        margin-bottom: 20px;
+      }
+
+      /* Back Button */
+      .back-btn {
+        margin: 20px;
+        background: var(--gold);
+        color: var(--dark-blue);
+        padding: 10px 18px;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        font-weight: bold;
+        display: inline-block;
+      }
+      .back-btn:hover {
+        background: #b08a57;
+      }
+
+      /* Card */
+      .card {
+        background: #fff;
+        padding: 20px 25px;
+        border-radius: 10px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        width: 450px;
+        text-align: left;
+        transition: 0.3s;
+        margin: 40px auto;
+        color: #333;
+      }
+      .card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+      }
+      .card h2 {
+        margin-bottom: 15px;
+        font-size: 22px;
+        color: #111;
+        text-align: center;
+      }
+      .card p {
+        margin: 8px 0;
+        font-size: 15px;
+        color: #111;
+      }
+      .highlight {
+        font-weight: bold;
+        color: #111;
+      }
+      .card button {
+        margin-top: 15px;
+        padding: 10px;
+        width: 100%;
+        border: none;
+        background: var(--dark-blue);
+        color: var(--gold);
+        font-size: 15px;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: background 0.3s;
+      }
+      .card button:hover {
+        background: var(--gold);
+        color: var(--dark-blue);
       }
     </style>
   </head>
   <body>
+    <!-- Navbar -->
     <header class="navbar">
       <div class="logo"><span class="q">Q</span>Ventor</div>
       <nav class="nav-links">
@@ -66,14 +176,60 @@
         <a href="/html/About.html">About</a>
         <a href="/html/contact-us.html">Contact Us</a>
       </nav>
+      <div class="menu-icon">&#9776;</div>
     </header>
+
+    <!-- Back Button -->
     <button
       class="back-btn"
       onclick="window.location.href='/html/dashboard.html'"
     >
-      ⬅ Back to Dashboard
+      ⬅ Back
     </button>
-    <h1>Settings</h1>
-    <p>System configurations and preferences.</p>
+
+    <!-- Settings Card -->
+    <div class="card">
+      <h2>Settings</h2>
+      <p><span class="highlight">Name:</span> <span id="siteName"></span></p>
+      <p><span class="highlight">Version:</span> <span id="version"></span></p>
+      <p>
+        <span class="highlight">Last Update:</span>
+        <span id="lastUpdate"></span>
+      </p>
+      <p>
+        <span class="highlight">Developer:</span> <span id="developer"></span>
+      </p>
+      <button onclick="checkForUpdates()">🔄 Check for Updates</button>
+    </div>
+
+    <script>
+      // Website info data (dynamic)
+      const websiteData = {
+        name: "QVentor",
+        version: "1.0.0",
+        lastUpdate: "31st Aug, 2025",
+        developer: "Kumkum Chakrabarty",
+      };
+
+      // Load data dynamically
+      document.getElementById("siteName").innerText = websiteData.name;
+      document.getElementById("version").innerText = websiteData.version;
+      document.getElementById("lastUpdate").innerText = websiteData.lastUpdate;
+      document.getElementById("developer").innerText = websiteData.developer;
+
+      // Simulate checking for updates
+      function checkForUpdates() {
+        setTimeout(() => {
+          websiteData.version = "1.1.0";
+          websiteData.lastUpdate = new Date().toLocaleDateString();
+
+          document.getElementById("version").innerText = websiteData.version;
+          document.getElementById("lastUpdate").innerText =
+            websiteData.lastUpdate;
+
+          alert("✅ Website updated to version " + websiteData.version);
+        }, 1000);
+      }
+    </script>
   </body>
 </html>
