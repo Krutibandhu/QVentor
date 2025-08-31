@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About QVentor</title>
+    <!-- GSAP CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <style>
+      :root {
+        --dark-blue: #0a1a3d;
+        --gold: #d4af7a;
+        --white: #ffffff;
+      }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #0a1a3d;
+        color: white;
+        line-height: 1.6;
+      }
+
+      /* ===== Navbar ===== */
+      .navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px 40px; /* a little extra padding for balance */
+        background-color: #11224d;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+      }
+      .logo {
+        font-size: 1.6rem;
+        font-weight: bold;
+      }
+      .logo .q {
+        color: var(--gold);
+      }
+      .nav-links {
+        display: flex;
+        gap: 28px; /* more spacing between links */
+      }
+      .nav-links a {
+        color: white;
+        text-decoration: none;
+        font-size: 1.15rem; /* base size */
+        transition: color 0.3s;
+      }
+      .nav-links a:nth-child(1),
+      .nav-links a:nth-child(2),
+      .nav-links a:nth-child(3) {
+        font-size: 1.25rem; /* Home, Admin, Employee bigger */
+        font-weight: 600;
+      }
+      .nav-links a:hover {
+        color: var(--gold);
+      }
+      .menu-icon {
+        display: none;
+        font-size: 1.8rem;
+        cursor: pointer;
+      }
+
+      /* ===== Main Content ===== */
+      .details-page {
+        max-width: 900px;
+        margin: 40px auto;
+        padding: 20px;
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+        text-align: center; /* center all text */
+      }
+      .details-page h1 {
+        font-size: 2.2rem;
+        color: var(--gold);
+        margin-bottom: 15px;
+      }
+      .details-page p {
+        margin-bottom: 15px;
+        font-size: 1.05rem;
+      }
+      .details-page h2 {
+        margin: 20px 0 10px;
+        font-size: 1.6rem;
+        color: var(--gold);
+      }
+      .details-page ul {
+        margin-left: 0; /* remove indent */
+        list-style-position: inside; /* keep bullets aligned in center area */
+        margin-bottom: 20px;
+        text-align: left; /* optional: keep bullet points readable */
+        display: inline-block; /* so bullets stay centered as a block */
+      }
+      .details-page li {
+        margin-bottom: 10px;
+      }
+      .back-btn {
+        display: inline-block;
+        padding: 10px 20px;
+        background: var(--gold);
+        color: black;
+        border-radius: 6px;
+        text-decoration: none;
+        font-weight: bold;
+        transition: background 0.3s;
+      }
+      .back-btn:hover {
+        background: var(--gold);
+      }
+
+      /* ===== Responsive Styles ===== */
+      @media (max-width: 768px) {
+        .nav-links {
+          display: none;
+          flex-direction: column;
+          background: rgba(10, 26, 61, 0.95);
+          position: absolute;
+          top: 60px;
+          right: 0;
+          width: 200px;
+          padding: 15px;
+        }
+        .nav-links.active {
+          display: flex;
+        }
+        .menu-icon {
+          display: block;
+        }
+        .details-page {
+          margin: 20px;
+          padding: 15px;
+        }
+        .details-page h1 {
+          font-size: 1.8rem;
+        }
+      }
+      @media (max-width: 480px) {
+        .navbar {
+          padding: 10px 15px;
+        }
+        .logo {
+          font-size: 1.3rem;
+        }
+        .details-page h1 {
+          font-size: 1.5rem;
+        }
+        .details-page p {
+          font-size: 0.95rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="navbar">
+      <div class="logo"><span class="q">Q</span>Ventor</div>
+      <nav class="nav-links">
+        <a href="/index.html" class="active">Home</a>
+        <a href="/html/admin.html" class="active">Admin</a>
+        <a href="/html/employee-login.html">Employee</a>
+        <a href="/html/our-service.html">Our Services</a>
+        <a href="/html/About.html">About</a>
+        <a href="/html/contact-us.html">Contact Us</a>
+      </nav>
+      <div class="menu-icon">&#9776;</div>
+    </header>
+
+    <section class="details-page">
+      <h1>About Our Project</h1>
+      <p>
+        QVentor is an innovative inventory management solution designed to
+        simplify stock tracking for businesses of all sizes. Using advanced QR
+        code technology, we ensure seamless, accurate, and real-time monitoring
+        of your inventory. Our platform allows quick product scanning, instant
+        updates, and smart analytics to optimize your business operations.
+      </p>
+      <p>
+        With QVentor, you get a user-friendly interface, high data security, and
+        the ability to integrate with existing systems effortlessly. Whether you
+        run a small shop or a large warehouse, our solution keeps you in control
+        at all times.
+      </p>
+
+      <h2>Our 3-Type Authentication System</h2>
+      <p>
+        To ensure maximum security and prevent unauthorized access, QVentor uses
+        a
+        <strong>3-Type Authentication</strong> process:
+      </p>
+      <ul>
+        <li>
+          <strong>1. Password Authentication:</strong> Secure, encrypted
+          password login for all users.
+        </li>
+        <li>
+          <strong>2. QR Code Verification:</strong> A unique QR code scan is
+          required for every login session.
+        </li>
+        <li>
+          <strong>3. OTP (One-Time Password):</strong> A dynamic OTP is sent to
+          the registered email/phone for final verification.
+        </li>
+      </ul>
+      <p>
+        This triple-layer security ensures that only authorized personnel can
+        access inventory data, protecting your business from any security
+        threats.
+      </p>
+
+      <a href="/index.html" class="back-btn">⬅ Back to Home</a>
+    </section>
+
+    <script>
+      // Navbar Toggle for Mobile
+      document
+        .querySelector(".menu-icon")
+        .addEventListener("click", function () {
+          document.querySelector(".nav-links").classList.toggle("active");
+        });
+
+      // GSAP Animations
+      gsap.from(".details-page h1", {
+        duration: 1,
+        y: -30,
+        opacity: 0,
+        ease: "power3.out",
+      });
+      gsap.from(".details-page p", {
+        duration: 1,
+        x: -50,
+        opacity: 0,
+        stagger: 0.3,
+        ease: "power3.out",
+      });
+      gsap.from(".details-page h2", {
+        duration: 1,
+        y: 30,
+        opacity: 0,
+        delay: 0.5,
+        ease: "power3.out",
+      });
+      gsap.from(".details-page ul li", {
+        duration: 1,
+        x: 50,
+        opacity: 0,
+        stagger: 0.2,
+        ease: "power3.out",
+      });
+      gsap.from(".back-btn", {
+        duration: 1,
+        scale: 0.8,
+        opacity: 0,
+        delay: 1,
+        ease: "elastic.out(1, 0.5)",
+      });
+    </script>
+  </body>
+</html>

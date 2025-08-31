@@ -1,0 +1,4 @@
+// public/config.js
+export const SUPABASE_URL = "https://xmfcwvgeyvabyuklamfi.supabase.co";
+export const SUPABASE_ANON_KEY =
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InhtZmN3dmdleXZhYnl1a2xhbWZpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTUyNzAwMzAsImV4cCI6MjA3MDg0NjAzMH0.54TefepAy7hHv91EZWjg03tNFGo0DsrjZn4ZfK-dqkY";

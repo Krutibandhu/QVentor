@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Audit Report Request - QVentor</title>
+    <style>
+      :root {
+        --dark-blue: #0a1a3d;
+        --gold: #d4af7a;
+        --white: #ffffff;
+      }
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+        background-color: var(--dark-blue);
+        color: var(--white);
+        text-align: center;
+      }
+      .navbar {
+        position: sticky;
+        top: 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem 2rem;
+        background-color: var(--dark-blue);
+        z-index: 1000;
+      }
+      .logo {
+        font-size: 2.6rem;
+        font-weight: bold;
+        font-family: "Playfair Display", serif;
+      }
+      .logo .q {
+        color: var(--gold);
+      }
+      .nav-links a {
+        color: var(--white);
+        text-decoration: none;
+        padding: 8px 12px;
+        font-size: 1.2em;
+        position: relative;
+      }
+      .nav-links a::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 0%;
+        height: 2px;
+        background: var(--gold);
+        transition: width 0.3s;
+      }
+      .nav-links a:hover {
+        color: var(--gold);
+      }
+      .nav-links a:hover::after {
+        width: 100%;
+      }
+      .nav-links a.active {
+        color: var(--gold);
+        font-weight: bold;
+      }
+      .nav-links a.active::after {
+        width: 100%;
+      }
+
+      .container {
+        background: var(--dark-blue);
+        color: var(--gold);
+        max-width: 500px;
+        margin: 120px auto;
+        padding: 40px 30px;
+        border-radius: 12px;
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+      }
+      h1 {
+        margin-bottom: 30px;
+        font-size: 28px;
+        color: white;
+      }
+      .btn {
+        display: block;
+        width: 100%;
+        margin: 15px auto;
+        padding: 15px;
+        background-color: var(--gold);
+        color: var(--dark-blue);
+        font-size: 18px;
+        font-weight: bold;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: 0.3s ease;
+      }
+      .btn:hover {
+        opacity: 0.85;
+      }
+      .back-btn {
+        margin-top: 20px;
+        padding: 12px 30px;
+        background-color: var(--gold);
+        color: var(--dark-blue);
+        border: none;
+        font-weight: bold;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: 0.3s ease;
+      }
+      .back-btn:hover {
+        opacity: 0.85;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="navbar">
+      <div class="logo"><span class="q">Q</span>Ventor</div>
+      <nav class="nav-links">
+        <a href="/index.html">Home</a>
+        <a href="/html/admin.html">Admin</a>
+        <a href="/html/employee-login.html" class="active">Employee</a>
+        <a href="/html/our-service.html">Our Services</a>
+        <a href="/html/About.html">About</a>
+        <a href="/html/contact-us.html">Contact Us</a>
+      </nav>
+    </header>
+
+    <div class="container">
+      <h1>Audit Report Request</h1>
+      <button
+        class="btn"
+        onclick="window.location.href='/html/send-request.html'"
+      >
+        SEND A REQUEST
+      </button>
+      <button
+        class="btn"
+        onclick="window.location.href='/html/check-status.html'"
+      >
+        CHECK STATUS
+      </button>
+      <button
+        class="back-btn"
+        onclick="window.location.href='/html/employee-dashboard.html'"
+      >
+        ⬅ BACK
+      </button>
+    </div>
+  </body>
+</html>

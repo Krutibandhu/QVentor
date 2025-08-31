@@ -1,0 +1,256 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&family=Open+Sans:wght@400;600&display=swap');
+
+:root {
+    --dark-blue: #0a1a3d;
+    --gold: #d4af7a;
+    --white: #ffffff;
+}
+
+/* Global reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+html {
+    scroll-behavior: smooth;
+}
+body {
+    font-family: 'Open Sans', sans-serif;
+    background-color: var(--dark-blue);
+    color: var(--white);
+}
+
+/* Navbar */
+.navbar {
+    position: sticky;
+    top: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background-color: var(--dark-blue);
+    z-index: 1000;
+}
+.logo {
+    font-size: 2.6rem;
+    font-weight: bold;
+    font-family: 'Playfair Display', serif;
+}
+.logo .q {
+    color: var(--gold);
+
+} 
+
+/* Navbar hover underline animation */
+.nav-links a {
+    position: relative;
+    color: white;
+    text-decoration: none;
+    padding: 8px 12px;
+    transition: color 0.3s ease;
+    font-size: 1.2em;
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0%;
+    height: 2px;
+    background: var(--gold); /* underline color */
+    transition: width 0.3s ease-in-out;
+}
+
+.nav-links a:hover {
+    color: var(--gold);
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+}
+
+/* Active page link styling */
+.nav-links a.active {
+    color: var(--gold);
+    font-weight: bold;
+}
+
+.nav-links a.active::after {
+    width: 100%;
+}
+
+/* Hamburger menu icon */
+.menu-icon {
+    display: none;
+    font-size: 1.8rem;
+    cursor: pointer;
+    color: var(--white);
+}
+
+/* Hero section */
+.hero {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 3rem 2rem;
+    gap: 2rem;
+    flex-wrap: wrap;
+}
+.hero-content {
+    flex: 1;
+}
+.hero-content h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.4rem;
+    color: var(--gold);
+    margin-bottom: 1rem;
+}
+.hero-content p {
+    font-size: 1.3rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    color: #dcdcdc;
+}
+
+        .learn-btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: var(--gold);
+            color: var(--dark-blue);
+            font-weight: bold;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background-color 0.3s;
+            margin-top: 10px; /* less gap */
+        }
+        .learn-btn:hover {
+            background-color: #c49b5a;
+        }
+
+.hero-image img {
+    height: 270px;
+    width: 280px;
+    border-radius: 8px;
+    margin-top: -110px;
+}
+
+/* Side arrow */
+.side-arrow {
+    position: fixed;
+    background-color: var(--gold);
+    color: var(--dark-blue);
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    font-size: 24px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.3s ease;
+    z-index: 1000;
+}
+.side-arrow.forward {
+    right: 20px;
+    top: 80%;
+    transform: translateY(-50%);
+}
+.side-arrow.forward:hover {
+    background-color: #c49b5a;
+}
+.side-arrow.back {
+    left: 20px;
+    top: 80%;
+    transform: translateY(-50%);
+}
+.side-arrow.back:hover {
+    background-color: #9a774a;
+}
+/* Back button styling */
+    .back-btn { 
+        background-color: #b08a57; /* Gold background */
+        color: white;
+        padding: 8px 15px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-bottom: 20px; /* Space below button */
+    }
+    /* Back button hover effect */
+    .back-btn:hover { 
+        background-color: #9a774a; /* Slightly darker gold on hover */
+    }
+/* Responsive styles */
+@media (max-width: 992px) {
+    .hero-content h1 {
+        font-size: 2.3rem;
+    }
+    .hero-content p {
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    /* Stack hero content vertically */
+    .hero {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    /* Hide nav links initially */
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 70px;
+        right: 0;
+        background-color: var(--dark-blue);
+        width: 220px;
+        padding: 1rem;
+        border-left: 2px solid var(--gold);
+        animation: slideIn 0.3s ease forwards;
+    }
+
+    /* Show menu icon */
+    .menu-icon {
+        display: block;
+    }
+
+    /* Active class to show nav links */
+    .nav-links.active {
+        display: flex;
+    }
+
+    /* Arrows resize */
+    .side-arrow {
+        width: 40px;
+        height: 40px;
+        font-size: 20px;
+    }
+}
+
+/* Very small mobile devices */
+@media (max-width: 480px) {
+    .logo {
+        font-size: 2rem;
+    }
+    .hero-content h1 {
+        font-size: 1.8rem;
+    }
+    .hero-content p {
+        font-size: 1rem;
+    }
+    .nav-links {
+        width: 180px;
+    }
+}
+
+/* Mobile menu slide animation */
+@keyframes slideIn {
+    from { transform: translateX(100%); }
+    to { transform: translateX(0); }
+}

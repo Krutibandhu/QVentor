@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>All Items - QVentor</title>
+  <link rel="stylesheet" href="/css/style.css" />
+  <style>
+    :root {
+      --dark-blue: #0a1a3d;
+      --gold: #d4af7a;
+      --white: #ffffff;
+    }
+
+    /* Global reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    html {
+      scroll-behavior: smooth;
+    }
+    body {
+      font-family: "Open Sans", sans-serif;
+      background-color: var(--dark-blue);
+      color: var(--white);
+    }
+    .navbar {
+      position: sticky;
+      top: 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      background-color: var(--dark-blue);
+      z-index: 1000;
+    }
+    .logo {
+      font-size: 2.6rem;
+      font-weight: bold;
+      font-family: "Playfair Display", serif;
+    }
+    .logo .q {
+      color: var(--gold);
+    }
+
+    /* Navbar hover underline animation */
+    .nav-links a {
+      position: relative;
+      color: white;
+      text-decoration: none;
+      padding: 8px 12px;
+      transition: color 0.3s ease;
+      font-size: 1.2em;
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 0%;
+      height: 2px;
+      background: var(--gold); /* underline color */
+      transition: width 0.3s ease-in-out;
+    }
+
+    .nav-links a:hover {
+      color: var(--gold);
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    /* Active page link styling */
+    .nav-links a.active {
+      color: var(--gold);
+      font-weight: bold;
+    }
+
+    .nav-links a.active::after {
+      width: 100%;
+    }
+
+    h1 {
+      color: #d4af7a;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    /* Table */
+    table {
+      width: 95%;
+      margin: auto;
+      border-collapse: collapse;
+      background: #11224d;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+    th,
+    td {
+      padding: 12px;
+      text-align: center;
+      border: 1px solid #ddd;
+    }
+    th {
+      background-color: #0f1e40;
+      color: #d4af7a;
+    }
+    tr:nth-child(even) {
+      background-color: #1a2b55;
+    }
+
+    /* Buttons */
+    .btn {
+      padding: 6px 12px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+    .btn-delete {
+      background: #dc3545;
+      color: white;
+    }
+    .btn-delete:hover {
+      background: #a71d2a;
+    }
+    .btn-update {
+      background: #ffc107;
+      color: #0a1a3d;
+    }
+    .btn-update:hover {
+      background: #d39e00;
+    }
+    /* 🔍 Search bar styles */
+    .search-container {
+      display: flex;
+      justify-content: center;
+      padding: 15px 20px;
+      margin-left: 680px;
+      margin-top: -80px;
+    }
+    .search-container input {
+      width: 60%;
+      max-width: 500px;
+      padding: 10px 15px;
+      border: 2px solid #d4af7a;
+      border-radius: 8px 0 0 8px;
+      outline: none;
+      font-size: 1rem;
+    }
+    .search-container button {
+      padding: 10px 20px;
+      border: none;
+      background: #d4af7a;
+      color: #0a1a3d;
+      font-weight: bold;
+      cursor: pointer;
+      border-radius: 0 8px 8px 0;
+    }
+    .search-container button:hover {
+      background: #b08a57;
+      color: white;
+    }
+    .back-btn {
+      margin: 20px;
+      padding: 12px 20px;
+      background: #d4af7a;
+      color: #0a1a3d;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+      margin-top: 10px;
+    }
+    .back-btn:hover {
+      background: #b08a57;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+<header class="navbar">
+  <div class="logo"><span class="q">Q</span>Ventor</div>
+  <nav class="nav-links">
+    <a href="/index.html">Home</a>
+    <a href="/html/admin.html" class="active">Admin</a>
+    <a href="/html/employee-login.html">Employee</a>
+    <a href="/html/our-service.html">Our Services</a>
+    <a href="/html/About.html">About</a>
+    <a href="/html/contact-us.html">Contact Us</a>
+  </nav>
+  <div class="menu-icon">&#9776;</div>
+</header>
+
+<!-- 🔍 Search + Back in one row -->
+<div class="top-actions">
+  <button
+          class="back-btn"
+          onclick="window.location.href='/html/employee-dashboard.html'"
+  >
+    ⬅ Back to Dashboard
+  </button>
+</div>
+
+<div class="search-container">
+  <input type="text" id="searchInput" placeholder="Search products..." />
+  <button onclick="searchProducts()">Search</button>
+</div>
+<h1>All Items</h1>
+
+<table>
+  <thead>
+  <tr>
+    <th>Sl No.</th>
+    <th>Name</th>
+    <th>Description</th>
+    <th>Price</th>
+    <th>Quantity</th>
+    <th>Actions</th>
+  </tr>
+  </thead>
+  <tbody id="itemsTable">
+  <!-- Items will load here -->
+  </tbody>
+</table>
+
+<script type="module" src="/js/config.js"></script>
+<script type="module" src="/js/supabase-client.js"></script>
+<script type="module" src="/js/all-items.js"></script>
+</body>
+</html>

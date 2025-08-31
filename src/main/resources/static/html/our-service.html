@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Our Services</title>
+<link rel="stylesheet" href="/css/style.css">
+
+<style>
+  :root {
+    --dark-blue: #11224d;
+    --gold: #f5d58c;
+    --white: #ffffff;
+  }
+
+  body {
+    margin: 0;
+    font-family: 'Open Sans', sans-serif;
+    background-color: var(--dark-blue);
+    color: var(--white);
+  }
+
+  /* Navbar styles */
+  .navbar {
+    position: sticky;
+    top: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background-color: var(--dark-blue);
+    opacity: 0; /* for GSAP fade-in */
+    transform: translateY(-20px); /* slide from top */
+    z-index: 1000;
+  }
+
+  .nav-links a {
+    position: relative;
+    color: white;
+    text-decoration: none;
+    padding: 8px 12px;
+    transition: color 0.3s ease;
+  }
+
+  .nav-links a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0%;
+    height: 2px;
+    background: var(--gold);
+    transition: width 0.3s ease-in-out;
+  }
+
+  .nav-links a:hover {
+    color: var(--gold);
+  }
+
+  .nav-links a:hover::after {
+    width: 100%;
+  }
+
+  .nav-links a.active {
+    color: var(--gold);
+    font-weight: bold;
+  }
+
+  .nav-links a.active::after {
+    width: 100%;
+  }
+
+  .logo {
+      font-size: 2.6rem;
+      font-weight: bold;
+  }
+
+  .logo .q {
+      color: var(--gold);
+  }
+
+  .nav-links {
+      display: flex;
+      gap: 1.5rem;
+  }
+
+  .nav-links a {
+      font-size: 1.2em;
+      text-decoration: none;
+      color: var(--white);
+      transition: color 0.3s;
+  }
+
+  .nav-links a:hover {
+      color: var(--gold);
+  }
+
+  .menu-icon {
+      display: none;
+      font-size: 1.8rem;
+      cursor: pointer;
+  }
+
+  .services-section {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    padding: 50px 20px;
+    gap: 40px;
+    opacity: 0; /* Start hidden for GSAP animation */
+  }
+
+  .services-section img {
+    width: 380px;
+    height: 350px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.4);
+  }
+
+  .services-text {
+    max-width: 500px;
+  }
+
+  .services-text h2 {
+    font-size: 40px;
+    margin-bottom: 40px;
+    color: var(--gold);
+  }
+
+  .services-text p {
+    font-size: 20px;
+    line-height: 1.1;
+    color: var(--white);
+    margin-bottom: 15px;
+  }
+
+  .services-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .services-list li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 18px;
+    font-size: 16px;
+  }
+
+  .services-list li img {
+    width: 30px;
+    height: 30px;
+    margin-right: 12px;
+  }
+/* --- Existing styles remain, adding these at the bottom --- */
+
+/* Tablet adjustments */
+@media (max-width: 1024px) {
+  .mission-contact-container {
+    padding: 40px 5%;
+    gap: 15px;
+  }
+  .box h2 {
+    font-size: 1.5em;
+  }
+}
+
+/* Mobile layout */
+@media (max-width: 768px) {
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 70px;
+    right: 0;
+    background: var(--dark-blue);
+    width: 220px;
+    padding: 1rem;
+    border-left: 2px solid var(--gold);
+  }
+  .nav-links.active {
+    display: flex;
+    animation: slideIn 0.3s ease forwards;
+  }
+  @keyframes slideIn {
+    from { transform: translateX(100%); }
+    to { transform: translateX(0); }
+  }
+  .menu-icon {
+    display: block;
+    font-size: 1.6rem;
+    color: var(--white);
+    cursor: pointer;
+  }
+  .mission-contact-container {
+    flex-direction: column;
+    align-items: center;
+    padding: 30px 5%;
+  }
+  .box {
+    max-width: 100%;
+  }
+  .social-icons {
+    flex-wrap: wrap;
+    display: flex;
+    gap: 8px;
+  }
+}
+
+/* Extra small devices */
+@media (max-width: 480px) {
+  .logo {
+    font-size: 2rem;
+  }
+  .box h2 {
+    font-size: 1.3em;
+  }
+  .feedback-form input,
+  .feedback-form textarea {
+    font-size: 0.9em;
+    padding: 8px;
+  }
+  .feedback-form button {
+    padding: 8px 12px;
+    font-size: 0.9em;
+  }
+  .side-arrow {
+    width: 40px;
+    height: 40px;
+    font-size: 18px;
+  }
+}
+
+</style>
+
+<!-- GSAP library -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+
+</head>
+<body>
+
+<header class="navbar">
+    <div class="logo"><span class="q">Q</span>Ventor</div>
+    <nav class="nav-links">
+            <a href="/index.html">Home</a>
+            <a href="/html/admin.html">Admin</a>
+            <a href="/html/employee-login.html">Employee</a>
+            <a href="/html/our-service.html" class="active">Our Services</a>
+            <a href="/html/About.html">About</a>
+            <a href="/html/contact-us.html">Contact Us</a>
+    </nav>
+    <div class="menu-icon">&#9776;</div>
+</header>
+
+<section class="services-section">
+  <img src="/assets/Services.jpeg" alt="Service" />
+
+  <div class="services-text">
+    <h2>Our Services</h2>
+    <p>
+      Upgrade to a seamless, accurate, and lightning-fast solution. Our top-notch
+      inventory management services use advanced QR technology to give you total
+      control and clarity over your stock.
+    </p>
+    <ul class="services-list">
+      <li><img src="/assets/service-icon.png" alt=""> Smart Inventory Management Using QR</li>
+      <li><img src="/assets/service-icon.png" alt=""> Low stock Alert & Automated Purchase Order</li>
+      <li><img src="/assets/service-icon.png" alt=""> Live stock Dashboard & Audit report Using ML</li>
+    </ul>
+  </div>
+</section>
+
+<!-- Back arrow: goes back to Employee page -->
+<button class="side-arrow back" onclick="location.href='/html/employee-login.html'" aria-label="Go back to Employee page">
+  &#8249;
+</button>
+
+<!-- Forward arrow: goes to About page -->
+<button class="side-arrow forward" onclick="location.href='/html/About.html'" aria-label="Go to About page">
+  &#8250;
+</button>
+
+<script>
+  
+  document.addEventListener("DOMContentLoaded", () => {
+    // Animate navbar
+    gsap.to(".navbar", { opacity: 1, y: 0, duration: 0.8, ease: "power2.out" });
+
+    // Animate services section
+    gsap.to(".services-section", { opacity: 1, duration: 1.2, delay: 0.3, ease: "power2.out" });
+  });
+</script>
+<script src="/js/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Update Employee - QVentor</title>
+    <link rel="stylesheet" href="/css/style.css" />
+    <style>
+      body {
+        background-color: #0a1a3d;
+        color: white;
+        padding: 90px 20px 20px;
+        margin: 0;
+        font-family: "Open Sans", sans-serif;
+      }
+
+      .navbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background-color: #0a1a3d;
+        padding: 15px 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        z-index: 999;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+      }
+
+      .navbar .logo {
+        font-size: 24px;
+        font-weight: bold;
+        color: white;
+      }
+
+      .navbar .nav-links a {
+        color: white;
+        text-decoration: none;
+        margin-left: 20px;
+        transition: color 0.3s ease;
+      }
+      .navbar .nav-links a:hover {
+        color: #b08a57;
+      }
+
+      .back-btn {
+        background-color: #b08a57;
+        color: white;
+        padding: 8px 15px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-bottom: 20px;
+      }
+
+      .form-container {
+        max-width: 500px;
+        margin: auto;
+        background: #11224d;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+      }
+
+      h1 {
+        text-align: center;
+        color: #d4af7a;
+        margin-bottom: 20px;
+      }
+
+      label {
+        font-weight: bold;
+        display: block;
+        margin-top: 15px;
+        margin-bottom: 5px;
+      }
+
+      input,
+      select {
+        width: 100%;
+        padding: 10px;
+        border-radius: 6px;
+        border: none;
+        margin-bottom: 10px;
+        font-size: 1rem;
+      }
+      form button {
+        padding: 10px 15px;
+        border: none;
+        border-radius: 5px;
+        font-weight: bold;
+        cursor: pointer;
+      }
+      .save-btn {
+        background-color: #b08a57;
+        color: white;
+      }
+      .save-btn:hover {
+        background-color: #9a774a;
+      }
+      .cancel-btn {
+        background-color: #a6a6a6;
+        color: black;
+        margin-left: 10px;
+      }
+      .cancel-btn:hover {
+        background-color: #8c8c8c;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="navbar">
+      <div class="logo"><span class="q">Q</span>Ventor</div>
+      <nav class="nav-links">
+        <a href="/index.html">Home</a>
+        <a href="/html/admin.html">Admin</a>
+        <a href="/html/employee-login.html" class="active">Employee</a>
+        <a href="/html/our-service.html">Our Services</a>
+        <a href="/html/About.html">About</a>
+        <a href="/html/contact-us.html">Contact Us</a>
+      </nav>
+    </header>
+
+    <button
+      class="back-btn"
+      onclick="window.location.href='/html/employee-dashboard.html'"
+    >
+      ⬅ Back to Dashboard
+    </button>
+
+    <div class="form-container">
+      <h1>Update Employee Details</h1>
+      <form id="employee-update-form">
+        <label>Name:</label>
+        <input type="text" id="empName" required />
+
+        <label>Phone:</label>
+        <input type="text" id="empPhone" required />
+
+        <label>Company Name:</label>
+        <input type="text" id="empCompany" required />
+
+        <label>Department:</label>
+        <input type="text" id="empDepartment" required />
+
+        <label>Role:</label>
+        <input type="text" id="empRole" required />
+
+        <button type="submit" class="save-btn">Save Changes</button>
+        <button
+          type="button"
+          class="cancel-btn"
+          onclick="window.location.href='/html/employee-profile.html'"
+        >
+          Cancel
+        </button>
+      </form>
+    </div>
+
+    <script type="module" src="/js/config.js"></script>
+    <script type="module" src="/js/supabase-client.js"></script>
+    <script type="module" src="/js/employee-update.js"></script>
+  </body>
+</html>

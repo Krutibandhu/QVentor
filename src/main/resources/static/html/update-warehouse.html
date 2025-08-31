@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Update Warehouse - QVentor</title>
+    <link rel="stylesheet" href="/css/style.css" />
+    <style>
+      body {
+        background-color: #0a1a3d;
+        color: white;
+        padding: 90px 20px 20px;
+        margin: 0;
+      }
+
+      .navbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background-color: #0a1a3d;
+        padding: 15px 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        z-index: 999;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+      }
+      .navbar .logo {
+        font-size: 24px;
+        font-weight: bold;
+        color: white;
+      }
+      .navbar .nav-links a {
+        color: white;
+        text-decoration: none;
+        margin-left: 20px;
+        transition: color 0.3s ease;
+      }
+      .navbar .nav-links a:hover {
+        color: #b08a57;
+      }
+
+      h1 {
+        margin-top: 40px;
+        color: #b08a57;
+      }
+      form {
+        margin-top: 20px;
+        max-width: 500px;
+        background: #13254d;
+        padding: 20px;
+        border-radius: 8px;
+      }
+      label {
+        font-weight: bold;
+      }
+      input,
+      select {
+        width: 100%;
+        padding: 10px;
+        margin: 8px 0 15px;
+        border: none;
+        border-radius: 5px;
+      }
+      button {
+        background-color: #b08a57;
+        color: white;
+        padding: 10px 18px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+      button:hover {
+        background-color: #946c3c;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="navbar">
+      <div class="logo"><span class="q">Q</span>Ventor</div>
+      <nav class="nav-links">
+        <a href="/index.html">Home</a>
+        <a href="/html/admin.html">Admin</a>
+        <a href="/html/employee-login.html">Employee</a>
+        <a href="/html/our-service.html">Our Services</a>
+        <a href="/html/About.html">About</a>
+        <a href="/html/contact-us.html">Contact Us</a>
+      </nav>
+    </header>
+
+    <button class="back-btn" onclick="window.location.href='/html/dashboard.html'">
+      ⬅ Back to Dashboard
+    </button>
+
+    <h1>Update Warehouse</h1>
+
+    <form id="updateWarehouseForm">
+      <label>Warehouse Name:</label>
+      <input type="text" id="warehouseName" required />
+
+      <label>Location:</label>
+      <input type="text" id="warehouseLocation" required />
+
+      <label>Status:</label>
+      <select id="warehouseStatus">
+        <option value="true">Active</option>
+        <option value="false">Inactive</option>
+      </select>
+
+      <button type="submit">Save Changes</button>
+    </form>
+
+    <script type="module" src="/js/config.js"></script>
+    <script type="module" src="/js/supabase-client.js"></script>
+    <script type="module" src="/js/update-warehouse.js"></script>
+  </body>
+</html>

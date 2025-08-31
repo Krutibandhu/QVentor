@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Audit Report - QVentor</title>
+  <link rel="stylesheet" href="/css/style.css"/>
+  <style>
+    :root {
+      --dark-blue: #0a1a3d;
+      --gold: #d4af7a;
+      --white: #ffffff;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: var(--dark-blue);
+      color: var(--white);
+      text-align: center;
+      margin: 0;
+      padding: 0;
+    }
+/* Navbar */
+.navbar {
+display: flex;
+justify-content: space-between;
+align-items: center;
+padding: 1rem 2rem;
+background: var(--dark-blue);
+color: var(--white);
+position: sticky;
+top: 0;
+z-index: 1000;
+}
+
+.logo {
+font-size: 1.8rem;
+font-weight: bold;
+}
+.logo .q { color: var(--gold); }
+
+.nav-links {
+display: flex;
+gap: 1.5rem;
+}
+.nav-links a {
+color: var(--white);
+text-decoration: none;
+position: relative;
+}
+.nav-links a:hover { color: var(--gold); }
+.nav-links a.active { color: var(--gold); font-weight: bold; }
+
+.menu-icon {
+display: none;
+font-size: 1.8rem;
+cursor: pointer;
+}
+
+/* Mobile menu */
+@media (max-width: 768px) {
+.nav-links {
+  position: absolute;
+  top: 65px;
+  right: 0;
+  background: var(--dark-blue);
+  flex-direction: column;
+  width: 100%;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+}
+.nav-links.active { max-height: 300px; }
+.menu-icon { display: block; }
+}
+    h1 {
+      margin: 30px 0 20px;
+      color: var(--gold);
+      font-size: 28px;
+    }
+
+    .report-box {
+      background: var(--dark-blue);
+      padding: 30px;
+      border-radius: 12px;
+      width: 420px;
+      margin: 20px auto 60px;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.411);
+      text-align: left;
+    }
+
+    .report-box label {
+      font-weight: bold;
+      color: white;
+      display: block;
+      margin-bottom: 6px;
+    }
+
+    .report-box input,
+    .report-box select {
+      width: 100%;
+      background-color: #0a1a3d;
+      color: white;
+      padding: 10px;
+      margin-bottom: 15px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 15px;
+    }
+
+    .predict-btn {
+      display: inline-block;
+      margin-top: 25px;
+      margin-left: 130PX;
+      padding: 14px 40px;
+      background: var(--gold);
+      color: var(--dark-blue);
+      font-size: 18px;
+      font-weight: bold;
+      border-radius: 8px;
+      text-decoration: none;
+      cursor: pointer;
+      border: none;
+    }
+
+    .predict-btn:hover {
+      background: #b8935f;
+    }
+.back-btn {
+background-color: #b08a57;
+color: white;
+border: none;
+padding: 8px 15px;
+cursor: pointer;
+margin-bottom: 1rem;
+}
+.back-btn:hover { background-color: #9a774a; }
+
+  </style>
+</head>
+<body>
+<header class="navbar">
+  <div class="logo"><span class="q">Q</span>Ventor</div>
+  <nav class="nav-links">
+    <a href="/index.html">Home</a>
+    <a href="/html/admin.html" class="active">Admin</a>
+    <a href="/html/employee-login.html">Employee</a>
+    <a href="/html/our-service.html">Our Services</a>
+    <a href="/html/About.html">About</a>
+    <a href="/html/contact-us.html">Contact Us</a>
+  </nav>
+  <div class="menu-icon">&#9776;</div>
+</header>
+
+<h1>Enter Report Details</h1>
+<div class="report-box">
+  <form id="reportForm">
+    <label>Enter Unit Cost Price:</label>
+    <input type="number" name="Unit_Cost" required />
+
+    <label>Enter Order Quantity:</label>
+    <input type="number" name="Order_Quantity" required />
+
+    <label>Enter Unit Sale Price:</label>
+    <input type="number" name="Unit_Sale" required />
+
+    <label>Enter Total Cost:</label>
+    <input type="number" name="Total_Cost" required />
+
+    <label>Enter Revenue:</label>
+    <input type="number" name="Revenue" required />
+
+    <label>Enter Order Month (1-12):</label>
+    <input type="number" name="Order_Month" min="1" max="12" required />
+
+    <label for="year">Enter Year:</label>
+    <input type="number" name="Year" required>
+
+    <label for="customerType">Select Customer Type:</label>
+    <select id="customerType" name="Customer_Type" required>
+      <option value="">select</option>
+      <option value="1">1. Export</option>
+      <option value="2">2. Distributor</option>
+      <option value="3">3. Wholesale</option>
+    </select>
+
+    <label for="productName">Select Product Name:</label>
+    <select id="productName" name="Product_Name" required>
+      <option value="">select</option>
+      <option value="1">1. Air Fryer</option>
+      <option value="2">2. Iron</option>
+      <option value="3">3. Laptop</option>
+      <option value="4">4. Oven</option>
+      <option value="5">5. Smartphone</option>
+      <option value="6">6. Tab</option>
+      <option value="7">7. TV</option>
+    </select>
+    <button type="submit" class="predict-btn">SUBMIT</button>
+  </form>
+</div>
+<button class="back-btn" onclick="window.location.href='/html/dashboard.html'">⬅ Back</button>
+<script>
+  document.getElementById("reportForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    const params = new URLSearchParams({
+      Unit_Cost: document.querySelector("[name='Unit_Cost']").value,
+      Order_Quantity: document.querySelector("[name='Order_Quantity']").value,
+      Unit_Sale: document.querySelector("[name='Unit_Sale']").value,
+      Total_Cost: document.querySelector("[name='Total_Cost']").value,
+      Revenue: document.querySelector("[name='Revenue']").value,
+      Order_Month: document.querySelector("[name='Order_Month']").value,
+      Year: document.querySelector("[name='Year']").value,
+      Customer_Type: document.querySelector("[name='Customer_Type']").value,
+      Product_Name: document.querySelector("[name='Product_Name']").value
+    });
+
+    window.location.href = "report-summary.html?" + params.toString();
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Warehouses - QVentor</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <style>
+    body {
+      background-color: #0a1a3d;
+      color: white;
+      padding: 90px 20px 20px;
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+    h1 {
+      color: #b08a57;
+    }
+    .warehouse-list {
+      margin-top: 20px;
+    }
+    .warehouse-card {
+      background-color: #1b2a4b;
+      padding: 15px;
+      margin-bottom: 15px;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .warehouse-info {
+      flex: 1;
+    }
+    .warehouse-status {
+      font-weight: bold;
+      margin-right: 20px;
+    }
+    .toggle-btn {
+      background-color: #b08a57;
+      color: white;
+      border: none;
+      padding: 8px 12px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    .toggle-btn:hover {
+      background-color: #9a774a;
+    }
+    .back-btn {
+      background-color: #b08a57;
+      color: white;
+      padding: 8px 15px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+  <button class="back-btn" onclick="window.location.href='/html/dashboard.html'">⬅ Back to Dashboard</button>
+  <h1>Your Warehouses</h1>
+  <div class="warehouse-list" id="warehouseList">
+    <!-- Warehouses will load here -->
+  </div>
+  <script type="module" src="/js/config.js"></script>
+  <script type="module" src="/js/supabase-client.js"></script>
+  <script type="module" src="/js/warehouses.js"></script>
+</body>
+</html>

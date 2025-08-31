@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Product Details</title>
+  <link rel="stylesheet" href="/css/style.css" />
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #0a1a3d;
+      color: white;
+      margin: 0;
+      padding: 0;
+    }
+    .navbar {
+      position: sticky;
+      top: 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      background-color: #0a1a3d;
+      z-index: 1000;
+    }
+    .logo {
+      font-size: 2.6rem;
+      font-weight: bold;
+      font-family: "Playfair Display", serif;
+    }
+    .logo .q {
+      color: #d4af7a;
+    }
+    h1 {
+      text-align: center;
+      margin-top: 20px;
+      color: #d4af7a;
+    }
+    .product-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      padding: 20px;
+      max-width: 1200px;
+      margin: auto;
+    }
+    .product-card {
+      background: #11224d;
+      border: 1px solid #d4af7a;
+      border-radius: 12px;
+      padding: 20px;
+      text-align: left;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+    }
+    .product-card h3 {
+      margin-top: 0;
+      color: #d4af7a;
+    }
+    .product-card p {
+      margin: 5px 0;
+    }
+    /* 🔍 Search bar styles */
+    .search-container {
+      display: flex;
+      justify-content: center;
+      padding: 15px 20px;
+      margin-left: 865px;
+      margin-top: -70px;
+    }
+    .search-container input {
+      width: 60%;
+      max-width: 500px;
+      padding: 10px 15px;
+      border: 2px solid #d4af7a;
+      border-radius: 8px 0 0 8px;
+      outline: none;
+      font-size: 1rem;
+    }
+    .search-container button {
+      padding: 10px 20px;
+      border: none;
+      background: #d4af7a;
+      color: #0a1a3d;
+      font-weight: bold;
+      cursor: pointer;
+      border-radius: 0 8px 8px 0;
+    }
+    .search-container button:hover {
+      background: #b08a57;
+      color: white;
+    }
+    .buttons {
+      margin-top: 15px;
+      display: flex;
+      gap: 10px;
+    }
+    .btn {
+      flex: 1;
+      padding: 10px;
+      background: #d4af7a;
+      color: #0a1a3d;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    .btn:hover {
+      background: #b08a57;
+      color: white;
+    }
+    .back-btn {
+      margin: 20px;
+      padding: 12px 20px;
+      background: #d4af7a;
+      color: #0a1a3d;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+      margin-top: 10px;
+    }
+    .back-btn:hover {
+      background: #b08a57;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+<header class="navbar">
+  <div class="logo"><span class="q">Q</span>Ventor</div>
+  <nav class="nav-links">
+    <a href="/index.html">Home</a>
+    <a href="/html/admin.html">Admin</a>
+    <a href="/html/employee.html" class="active">Employee</a>
+    <a href="/html/our-service.html">Our Services</a>
+    <a href="/html/About.html">About</a>
+    <a href="/html/contact-us.html">Contact Us</a>
+  </nav>
+</header>
+
+<button
+        class="back-btn"
+        onclick="window.location.href='/html/employee-dashboard.html'"
+>
+  ⬅ Back to Dashboard
+</button>
+
+<div class="search-container">
+  <input type="text" id="searchInput" placeholder="Search products..." />
+  <button onclick="searchProducts()">Search</button>
+</div>
+<h1>📦 Product Details</h1>
+<p style="text-align: center">
+  Find information about available products here.
+</p>
+
+<div class="product-list" id="productList">
+  <p style="grid-column: 1/-1; text-align: center">Loading products...</p>
+</div>
+
+<script type="module" src="/js/config.js"></script>
+<script type="module" src="/js/supabase-client.js"></script>
+<script type="module" src="/js/product-details.js"></script>
+</body>
+</html>

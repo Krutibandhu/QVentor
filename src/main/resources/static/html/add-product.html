@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Add Product - QVentor</title>
+    <link rel="stylesheet" href="/css/style.css" />
+    <style>
+      :root {
+        --dark-blue: #0a1a3d;
+        --gold: #d4af7a;
+        --white: #ffffff;
+      }
+
+      body {
+        font-family: "Open Sans", sans-serif;
+        margin: 0;
+        padding: 0;
+        background: var(--dark-blue);
+        color: var(--white);
+        text-align: center;
+      }
+
+      /* Navbar */
+      .navbar {
+        position: sticky;
+        top: 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem 2rem;
+        background-color: var(--dark-blue);
+        z-index: 1000;
+      }
+
+      .logo {
+        font-size: 2.6rem;
+        font-weight: bold;
+        font-family: "Playfair Display", serif;
+      }
+      .logo .q {
+        color: var(--gold);
+      }
+
+      .nav-links a {
+        color: var(--white);
+        text-decoration: none;
+        padding: 8px 12px;
+        font-size: 1.2em;
+        position: relative;
+      }
+      .nav-links a::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 0%;
+        height: 2px;
+        background: var(--gold);
+        transition: width 0.3s;
+      }
+      .nav-links a:hover {
+        color: var(--gold);
+      }
+      .nav-links a:hover::after {
+        width: 100%;
+      }
+      .nav-links a.active {
+        color: var(--gold);
+        font-weight: bold;
+      }
+      .nav-links a.active::after {
+        width: 100%;
+      }
+
+      /* Scanner box */
+      .scanner {
+        margin: 20px auto;
+        width: 320px;
+        height: 320px;
+        border: 2px solid white;
+        border-radius: 12px;
+      }
+
+      /* Buttons */
+      .btn {
+        background: #b08a57;
+        border: none;
+        padding: 10px 20px;
+        margin: 10px;
+        color: white;
+        cursor: pointer;
+        border-radius: 6px;
+        font-weight: bold;
+      }
+      .btn:hover {
+        background: #9a774a;
+      }
+
+      /* Details box */
+      .details {
+        background: white;
+        color: black;
+        padding: 15px;
+        border-radius: 10px;
+        margin-top: 20px;
+        max-width: 400px;
+        margin-left: auto;
+        margin-right: auto;
+        display: none;
+        text-align: left;
+      }
+
+      h1 {
+        margin-top: 30px;
+        color: var(--gold);
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <header class="navbar">
+      <div class="logo"><span class="q">Q</span>Ventor</div>
+      <nav class="nav-links">
+        <a href="/index.html">Home</a>
+        <a href="/html/admin.html">Admin</a>
+        <a href="/html/employee.html" class="active">Employee Login</a>
+        <a href="/html/our-service.html">Our Services</a>
+        <a href="/html/About.html">About</a>
+        <a href="/html/contact-us.html">Contact Us</a>
+      </nav>
+    </header>
+
+    <!-- Main Content -->
+    <h1>📦 Add Product</h1>
+    <p>1. Scan the product barcode or QR code</p>
+    <p>2. View product details below</p>
+    <p>3. Export details as PDF</p>
+
+    <!-- Scanner -->
+    <div id="reader" class="scanner"></div>
+
+    <!-- Product Details -->
+    <div id="product-details" class="details">
+      <h3>Product Details</h3>
+      <p><strong>ID:</strong> <span id="prod-id"></span></p>
+      <p><strong>Name:</strong> <span id="prod-name"></span></p>
+      <p><strong>Price:</strong> <span id="prod-price"></span></p>
+      <p><strong>Description:</strong> <span id="prod-desc"></span></p>
+      <button class="btn" id="downloadPDF">⬇ Download PDF</button>
+    </div>
+
+    <!-- Action Buttons -->
+    <div style="margin-top: 20px">
+      <button class="btn" onclick="window.location.href='/html/manual-entry.html'">
+        ✍ Manual Entry
+      </button>
+      <button
+        class="btn"
+        onclick="window.location.href='/html/employee-dashboard.html'"
+      >
+        ⬅ Back
+      </button>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/html5-qrcode"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        const productDetails = document.getElementById("product-details");
+        const prodId = document.getElementById("prod-id");
+        const prodName = document.getElementById("prod-name");
+        const prodPrice = document.getElementById("prod-price");
+        const prodDesc = document.getElementById("prod-desc");
+
+        const html5QrCode = new Html5Qrcode("reader");
+
+        function startScanner() {
+          html5QrCode
+            .start(
+              { facingMode: "environment" },
+              { fps: 10, qrbox: 250 },
+              (qrCodeMessage) => {
+                html5QrCode.stop();
+                prodId.textContent = qrCodeMessage;
+                prodName.textContent = "Scanned Product";
+                prodPrice.textContent = "$25.00";
+                prodDesc.textContent = "Auto-fetched description after scan.";
+                productDetails.style.display = "block";
+              }
+            )
+            .catch((err) => console.error("Scanner error: ", err));
+        }
+
+        startScanner();
+
+        document.getElementById("downloadPDF").addEventListener("click", () => {
+          const { jsPDF } = window.jspdf;
+          const doc = new jsPDF();
+          doc.text("QVentor - Product Report", 10, 10);
+          doc.text(`ID: ${prodId.textContent}`, 10, 20);
+          doc.text(`Name: ${prodName.textContent}`, 10, 30);
+          doc.text(`Price: ${prodPrice.textContent}`, 10, 40);
+          doc.text(`Description: ${prodDesc.textContent}`, 10, 50);
+          doc.save("product-details.pdf");
+        });
+      });
+    </script>
+  </body>
+</html>

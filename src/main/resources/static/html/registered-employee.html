@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Registered Employees - QVentor</title>
+    <link rel="stylesheet" href="/css/style.css" />
+    <style>
+      :root {
+        --dark-blue: #0a1a3d;
+        --gold: #d4af7a;
+        --white: #ffffff;
+      }
+
+      /* Global reset */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        font-family: "Open Sans", sans-serif;
+        background-color: var(--dark-blue);
+        color: var(--white);
+      }
+
+      /* Navbar */
+      .navbar {
+        position: sticky;
+        top: 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem 2rem;
+        background-color: var(--dark-blue);
+        z-index: 1000;
+      }
+      .logo {
+        font-size: 2rem;
+        font-weight: bold;
+        font-family: "Playfair Display", serif;
+      }
+      .logo .q {
+        color: var(--gold);
+      }
+      .nav-links a {
+        color: white;
+        text-decoration: none;
+        padding: 8px 12px;
+        font-size: 1.1em;
+        transition: 0.3s;
+      }
+      .nav-links a:hover {
+        color: var(--gold);
+      }
+
+      /* Table */
+      h1 {
+        margin: 20px;
+        color: var(--gold);
+      }
+      table {
+        width: 95%;
+        margin: 20px auto;
+        border-collapse: collapse;
+        background: var(--dark-blue);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+        overflow: hidden;
+      }
+      th,
+      td {
+        padding: 12px;
+        text-align: center;
+        border: 1px solid #ddd;
+      }
+      th {
+        background-color: var(--gold);
+        color: var(--white);
+      }
+
+      /* Buttons */
+      .button-box {
+        margin-top: 20px;
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+      }
+      .btn {
+        background: var(--gold);
+        color: var(--dark-blue);
+        padding: 10px 20px;
+        border: none;
+        border-radius: 8px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+      .btn:hover {
+        background: #c49b5a;
+      }
+
+      .toggle-btn {
+        padding: 5px 10px;
+        border: none;
+        border-radius: 5px;
+        font-size: 0.9rem;
+        cursor: pointer;
+        font-weight: bold;
+      }
+      .toggle-active {
+        background: #28a745;
+        color: white;
+      }
+      .toggle-inactive {
+        background: #dc3545;
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="navbar">
+      <div class="logo"><span class="q">Q</span>Ventor</div>
+      <nav class="nav-links">
+        <a href="/index.html">Home</a>
+        <a href="/html/admin.html" class="active">Admin</a>
+        <a href="/html/employee-login.html">Employee</a>
+      </nav>
+    </header>
+
+    <h1>Registered Employees</h1>
+
+    <table id="employeeTable">
+      <thead>
+        <tr>
+          <th>Sl No.</th>
+          <th>Employee Name</th>
+          <th>Email</th>
+          <th>Phone</th>
+          <th>Department</th>
+          <th>Role</th>
+          <th>Status</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+
+    <div class="button-box">
+      <button class="btn" onclick="window.location.href='/html/dashboard.html'">
+        ⬅ Back
+      </button>
+    </div>
+
+    <script type="module" src="/js/config.js"></script>
+    <script type="module" src="/js/supabase-client.js"></script>
+    <script type="module" src="/js/registered-employees.js"></script>
+  </body>
+</html>

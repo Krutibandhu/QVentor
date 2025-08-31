@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Access Details - QVentor</title>
+    <link rel="stylesheet" href="/css/style.css" />
+    <style>
+      body {
+        background-color: #0a1a3d;
+        color: white;
+        padding: 90px 20px 20px;
+        margin: 0;
+        text-align: center;
+      }
+      /* Sticky Navbar */
+      .navbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background-color: #0a1a3d;
+        padding: 15px 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        z-index: 999;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+      }
+
+      .navbar .logo {
+        font-size: 24px;
+        font-weight: bold;
+        color: white;
+      }
+
+      .navbar .nav-links a {
+        color: white;
+        text-decoration: none;
+        margin-left: 20px;
+        transition: color 0.3s ease;
+      }
+
+      .navbar .nav-links a:hover {
+        color: #b08a57;
+      }
+
+      .back-btn {
+        background-color: #b08a57;
+        color: white;
+        padding: 8px 15px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-bottom: 20px;
+      }
+
+      /*  Employee Action Buttons */
+      .action-buttons {
+        margin-top: 30px;
+      }
+
+      .action-buttons button {
+        background-color: #b08a57;
+        color: white;
+        border: none;
+        padding: 12px 24px;
+        margin: 10px;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 16px;
+        transition: background 0.3s ease;
+      }
+
+      .action-buttons button:hover {
+        background-color: #d1a86c;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="navbar">
+      <div class="logo"><span class="q">Q</span>Ventor</div>
+      <nav class="nav-links">
+        <a href="/index.html">Home</a>
+        <a href="/html/admin.html">Admin</a>
+        <a href="/html/employee-login.html">Employee</a>
+        <a href="/html/our-service.html">Our Services</a>
+        <a href="/html/About.html">About</a>
+        <a href="/html/contact-us.html">Contact Us</a>
+      </nav>
+    </header>
+
+    <button class="back-btn" onclick="window.location.href='/html/dashboard.html'">
+      ⬅ Back to Dashboard
+    </button>
+
+    <h1>Employee Access</h1>
+    <p>List of all user employees role, permissions, and access logs.</p>
+    <div class="action-buttons">
+      <button onclick="window.location.href='/html/register-employee.html'">
+        Register an Employee
+      </button>
+      <button onclick="window.location.href='/html/registered-employee.html'">
+        Registered Employees
+      </button>
+    </div>
+  </body>
+</html>

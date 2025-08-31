@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>About Section</title>
+    <link rel="stylesheet" href="/css/style.css" />
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&family=Open+Sans:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        --dark-blue: #11224d;
+        --gold: #d4af7a;
+        --white: #ffffff;
+      }
+
+      body {
+        margin: 0;
+        font-family: "Open Sans", sans-serif;
+        background-color: var(--dark-blue);
+        color: var(--white);
+      }
+
+      /* Navbar */
+      .navbar {
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem 2rem;
+        background-color: var(--dark-blue);
+        opacity: 0; /* GSAP animation */
+        transform: translateY(-50px);
+      }
+
+      .logo {
+        font-size: 2.6rem;
+        font-weight: bold;
+        font-family: "Playfair Display", serif;
+      }
+      .logo .q {
+        color: var(--gold);
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 1.5rem;
+      }
+
+      .nav-links a {
+        position: relative;
+        color: var(--white);
+        text-decoration: none;
+        padding: 8px 12px;
+        transition: color 0.3s ease;
+        font-size: 1.1em;
+      }
+
+      .nav-links a::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 0%;
+        height: 2px;
+        background: var(--gold);
+        transition: width 0.3s ease-in-out;
+      }
+
+      .nav-links a:hover {
+        color: var(--gold);
+      }
+      .nav-links a:hover::after {
+        width: 100%;
+      }
+      .nav-links a.active {
+        color: var(--gold);
+        font-weight: bold;
+      }
+      .nav-links a.active::after {
+        width: 100%;
+      }
+
+      /* Hamburger menu */
+      .menu-icon {
+        display: none;
+        font-size: 1.8rem;
+        cursor: pointer;
+        color: var(--white);
+      }
+
+      /* About Section */
+      .about-section {
+        padding: 60px 20px;
+      }
+      .about-container {
+        max-width: 1100px;
+        margin: auto;
+        text-align: center;
+      }
+      .about-container h2 {
+        font-size: 38px;
+        color: var(--gold);
+        margin-bottom: -10px;
+        font-family: "Playfair Display", serif;
+      }
+      .about-container p.subtitle {
+        font-size: 20px;
+        color: var(--gold);
+        margin-bottom: 40px;
+      }
+
+      .about-cards {
+        display: flex;
+        justify-content: center;
+        align-items: stretch; /* Equal height columns */
+        gap: 20px;
+      }
+
+      .about-card {
+        flex: 1;
+        border: 1px solid var(--gold);
+        padding: 30px;
+        font-size: 18px;
+        background-color: rgba(17, 34, 77, 0.6);
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 80%;
+        min-height: 230px;
+      }
+
+      .about-card:hover {
+        transform: translateY(-5px);
+      }
+
+      .about-card p {
+        line-height: 1.6;
+        margin-bottom: 15px;
+      }
+
+      .about-card span {
+        font-style: italic;
+        color: var(--gold);
+        font-weight: bold;
+      }
+
+      /* Responsive */
+      @media (max-width: 900px) {
+        .about-cards {
+          flex-direction: column;
+        }
+      }
+    </style>
+
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  </head>
+  <body>
+    <header class="navbar">
+      <div class="logo"><span class="q">Q</span>Ventor</div>
+      <nav class="nav-links">
+        <a href="/index.html">Home</a>
+        <a href="/html/admin.html">Admin</a>
+        <a href="/html/employee-login.html">Employee</a>
+        <a href="/html/our-service.html">Our Services</a>
+        <a href="/html/About.html" class="active">About</a>
+        <a href="/html/contact-us.html">Contact Us</a>
+      </nav>
+      <div class="menu-icon">&#9776;</div>
+    </header>
+
+    <section class="about-section">
+      <div class="about-container">
+        <h2>About</h2>
+        <p class="subtitle">
+          Who we are? Why This Service? Our Smart Solutions
+        </p>
+
+        <div class="about-cards">
+          <div class="about-card">
+            <p>
+              We are a dedicated team committed to simplifying inventory control
+              for businesses of all sizes. Our focus is on delivering reliable,
+              user-friendly, and efficient tools to help organizations track,
+              manage, and optimize their stock in real time.
+            </p>
+            <span>We are</span>
+          </div>
+          <div class="about-card">
+            <p>
+              The service addresses the problems of manual inventory tracking,
+              which can lead to errors, inefficiencies, and difficulty with
+              real-time stock tracking. It also helps distributors and shop
+              owners with multiple storage locations who struggle to manage
+              goods movement.
+            </p>
+            <span>This Services</span>
+          </div>
+          <div class="about-card">
+            <p>
+              The "Smart Inventory Management System with QR Code Access" is a
+              digital solution that uses QR codes to replace manual tracking.
+              The system aims to solve problems like errors and inefficiencies
+              caused by manual tracking.
+            </p>
+            <span>Smart Solutions</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <button
+      class="side-arrow back"
+      onclick="location.href='/html/our-service.html'"
+      aria-label="Go back to our-service"
+    >
+      &#8249;
+      <!-- Unicode left-pointing arrow ‹ -->
+    </button>
+
+    <!-- Forward arrow: goes to Employee page -->
+    <button
+      class="side-arrow forward"
+      onclick="location.href='/html/contact-us.html'"
+      aria-label="Go to contact-us"
+    >
+      &#8250;
+      <!-- Unicode right-pointing arrow › -->
+    </button>
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        gsap.to(".navbar", {
+          opacity: 1,
+          y: 0,
+          duration: 1,
+          ease: "power2.out",
+        });
+        gsap.from(".about-card", {
+          opacity: 0,
+          y: 50,
+          duration: 0.8,
+          ease: "power2.out",
+          stagger: 0.2,
+        });
+      });
+
+      document.querySelector(".menu-icon").addEventListener("click", () => {
+        document.querySelector(".nav-links").classList.toggle("active");
+      });
+      document.addEventListener("DOMContentLoaded", () => {
+        let cards = document.querySelectorAll(".about-card");
+        let maxHeight = 0;
+
+        cards.forEach((card) => {
+          card.style.height = "auto"; // Reset
+          if (card.offsetHeight > maxHeight) {
+            maxHeight = card.offsetHeight;
+          }
+        });
+
+        cards.forEach((card) => {
+          card.style.height = maxHeight + "px";
+        });
+      });
+    </script>
+  </body>
+</html>

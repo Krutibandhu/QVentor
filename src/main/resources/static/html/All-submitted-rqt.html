@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin - Manage Audit Requests</title>
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #0a1a3d;
+    color: #fff;
+    text-align: center;
+  }
+  h1 { margin: 20px 0; }
+  table {
+    width: 90%;
+    margin: 20px auto;
+    border-collapse: collapse;
+    background: #fff;
+    color: #0a1a3d;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  th, td {
+    padding: 12px;
+    border: 1px solid #ccc;
+    text-align: center;
+  }
+  th {
+    background: #d4af7a;
+    color: #fff;
+  }
+  select, button {
+    padding: 6px 10px;
+    margin: 2px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  select {
+    background: #f0f0f0;
+  }
+  button {
+    background: #0a1a3d;
+    color: #fff;
+    font-weight: bold;
+  }
+  button:hover { opacity: 0.85; }
+</style>
+</head>
+<body>
+
+  <h1>📋 Admin Panel - All Audit Requests</h1>
+
+  <table id="requestsTable">
+    <thead>
+      <tr>
+        <th>Request ID</th>
+        <th>Name</th>
+        <th>Employee ID</th>
+        <th>Reason</th>
+        <th>Status</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+
+<script>
+  function loadRequests() {
+    let tbody = document.querySelector("#requestsTable tbody");
+    tbody.innerHTML = "";
+
+    // Loop through all items in localStorage
+    for (let i = 0; i < localStorage.length; i++) {
+      let key = localStorage.key(i);
+      try {
+        let requestData = JSON.parse(localStorage.getItem(key));
+        if (requestData && requestData.name && requestData.empId) {
+          let row = document.createElement("tr");
+
+          row.innerHTML = `
+            <td>${key}</td>
+            <td>${requestData.name}</td>
+            <td>${requestData.empId}</td>
+            <td>${requestData.reason}</td>
+            <td>
+              <select id="status-${key}">
+                <option value="Pending" ${requestData.status==="Pending"?"selected":""}>Pending</option>
+                <option value="Approved" ${requestData.status==="Approved"?"selected":""}>Approved ✅</option>
+                <option value="Rejected" ${requestData.status==="Rejected"?"selected":""}>Rejected </option>
+                <option value="In Progress 🔄" ${requestData.status==="In Progress 🔄"?"selected":""}>In Progress 🔄</option>
+              </select>
+            </td>
+            <td><button onclick="updateStatus('${key}')">Update</button></td>
+          `;
+
+          tbody.appendChild(row);
+        }
+      } catch (e) {
+        // ignore invalid entries
+      }
+    }
+  }
+
+  function updateStatus(reqId) {
+    let data = localStorage.getItem(reqId);
+    if (data) {
+      let requestData = JSON.parse(data);
+      let newStatus = document.getElementById("status-" + reqId).value;
+      requestData.status = newStatus;
+      localStorage.setItem(reqId, JSON.stringify(requestData));
+      alert("Status for Request ID " + reqId + " updated to: " + newStatus);
+    }
+  }
+
+  // Load requests on page load
+  window.onload = loadRequests;
+</script>
+
+</body>
+</html>

@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Profile - QVentor</title>
+    <link rel="stylesheet" href="/css/style.css" />
+    <style>
+      body {
+        background-color: #0a1a3d;
+        color: white;
+        padding-top: 90px; /* offset for navbar */
+        margin: 0;
+        font-family: Arial, sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        flex-direction: column;
+      }
+
+      /* Sticky Navbar */
+      .navbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background-color: #0a1a3d;
+        padding: 15px 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        z-index: 999;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+      }
+
+      .navbar .logo {
+        font-size: 24px;
+        font-weight: bold;
+        color: white;
+      }
+
+      .navbar .nav-links a {
+        color: white;
+        text-decoration: none;
+        margin-left: 20px;
+        transition: color 0.3s ease;
+      }
+
+      .navbar .nav-links a:hover {
+        color: #b08a57;
+      }
+
+      /* Back Button */
+      .back-btn {
+        background-color: #b08a57;
+        color: white;
+        padding: 8px 15px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-bottom: 20px;
+      }
+      .back-btn:hover {
+        background-color: #9a774a;
+      }
+
+      /* Profile Box */
+      .profile-box {
+        background: #11224d;
+        padding: 30px;
+        border-radius: 12px;
+        text-align: left;
+        width: 400px;
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.5);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .profile-box h1 {
+        text-align: center;
+        color: #b08a57;
+        margin-bottom: 20px;
+      }
+
+      .profile-box p {
+        font-size: 18px;
+        margin: 12px 0;
+        padding: 8px;
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 6px;
+      }
+
+      .profile-box strong {
+        color: #b08a57;
+      }
+
+      .btn {
+        display: block;
+        width: 100%;
+        margin-top: 20px;
+        background-color: #b08a57;
+        color: white;
+        padding: 10px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 16px;
+        transition: 0.3s;
+        text-align: center;
+      }
+
+      .btn:hover {
+        background-color: #9a774a;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="navbar">
+      <div class="logo"><span class="q">Q</span>Ventor</div>
+      <nav class="nav-links">
+        <a href="/index.html">Home</a>
+        <a href="/html/admin.html" class="active">Admin</a>
+        <a href="/html/employee-login.html">Employee</a>
+        <a href="/html/our-service.html">Our Services</a>
+        <a href="/html/About.html">About</a>
+        <a href="/html/contact-us.html">Contact Us</a>
+      </nav>
+    </header>
+
+    <button
+      class="back-btn"
+      onclick="window.location.href='/html/dashboard.html'"
+    >
+      ⬅ Back to Dashboard
+    </button>
+
+    <div class="profile-box">
+      <h1>Admin Profile</h1>
+      <p><strong>Name:</strong> <span id="name"></span></p>
+      <p><strong>Email:</strong> <span id="email"></span></p>
+      <p><strong>Role:</strong> Admin</p>
+      <button
+        class="btn"
+        onclick="window.location.href='/html/update-admin.html'"
+      >
+        ✏ Update Profile
+      </button>
+    </div>
+
+    <script type="module" src="/js/config.js"></script>
+    <script type="module" src="/js/supabase-client.js"></script>
+    <script type="module" src="/js/admin-profile.js"></script>
+  </body>
+</html>

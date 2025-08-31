@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Order History</title>
+    <link rel="stylesheet" href="/css/style.css" />
+    <style>
+      body {
+        background-color: #0a1a3d;
+        color: white;
+        padding: 90px 20px 20px;
+        margin: 0;
+        font-family: Arial, sans-serif;
+      }
+
+      h1 {
+        color: #d4af7a;
+        text-align: center;
+        margin-bottom: 20px;
+      }
+
+      .section-title {
+        margin-top: 30px;
+        font-size: 1.4em;
+        color: #d4af7a;
+      }
+
+      .order-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 15px;
+      }
+
+      .order-table th,
+      .order-table td {
+        border: 1px solid #d4af7a;
+        padding: 10px;
+        text-align: left;
+      }
+
+      .order-table th {
+        background-color: #11224d;
+      }
+
+      .done {
+        color: lightgreen;
+        font-weight: bold;
+      }
+
+      .pending {
+        color: orange;
+        font-weight: bold;
+      }
+
+      .back-btn {
+        background-color: #b08a57;
+        color: white;
+        padding: 8px 15px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-bottom: 20px;
+      }
+      .back-btn:hover {
+        background-color: #9a774a;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="navbar">
+      <div class="logo"><span class="q">Q</span>Ventor</div>
+      <nav class="nav-links">
+        <a href="/index.html">Home</a>
+        <a href="/html/admin.html">Admin</a>
+        <a href="/html/employee-login.html" class="active">Employee</a>
+        <a href="/html/our-service.html">Our Services</a>
+        <a href="/html/About.html">About</a>
+        <a href="/html/contact-us.html">Contact Us</a>
+      </nav>
+    </header>
+
+    <button
+      class="back-btn"
+      onclick="window.location.href='/html/employee-dashboard.html'"
+    >
+      ⬅ Back to Dashboard
+    </button>
+
+    <h1>Order History</h1>
+    <p>
+      View all your past orders here, categorized into
+      <span class="done">Done</span> and <span class="pending">Pending</span>.
+    </p>
+
+    <!-- Import History -->
+    <h2 class="section-title">📥 Import History</h2>
+    <table class="order-table" id="importTable">
+      <thead>
+        <tr>
+          <th>Product</th>
+          <th>Date</th>
+          <th>Document #</th>
+          <th>Vendor</th>
+          <th>Quantity Ordered</th>
+          <th>Quantity Received</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+
+    <!-- Export History -->
+    <h2 class="section-title">📤 Export History</h2>
+    <table class="order-table" id="exportTable">
+      <thead>
+        <tr>
+          <th>Product</th>
+          <th>Date</th>
+          <th>Document #</th>
+          <th>Customer</th>
+          <th>Quantity Ordered</th>
+          <th>Quantity Shipped</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+
+    <script type="module" src="/js/config.js"></script>
+    <script type="module" src="/js/supabase-client.js"></script>
+    <script type="module" src="/js/order-history.js"></script>
+  </body>
+</html>

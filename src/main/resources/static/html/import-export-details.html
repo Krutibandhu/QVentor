@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Import/Export Details - QVentor</title>
+    <link rel="stylesheet" href="/css/style.css" />
+    <style>
+      body {
+        background-color: #0a1a3d;
+        color: white;
+        padding: 90px 20px 20px;
+        margin: 0;
+      }
+
+      .navbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background-color: #0a1a3d;
+        padding: 15px 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        z-index: 999;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+      }
+      .navbar .logo {
+        font-size: 24px;
+        font-weight: bold;
+        color: white;
+      }
+      .navbar .nav-links a {
+        color: white;
+        text-decoration: none;
+        margin-left: 20px;
+      }
+      .navbar .nav-links a:hover {
+        color: #b08a57;
+      }
+
+      h1 {
+        color: #d4af7a;
+        margin-bottom: 10px;
+      }
+      h2 {
+        margin-top: 40px;
+        color: #b08a57;
+      }
+
+      table {
+        width: 100%;
+        margin-top: 10px;
+        border-collapse: collapse;
+        background: #11224d;
+        border-radius: 6px;
+        overflow: hidden;
+      }
+      table th,
+      table td {
+        padding: 10px;
+        border: 1px solid #fff;
+        text-align: center;
+      }
+      table th {
+        background: #0f1e40;
+        color: #d4af7a;
+      }
+
+      .back-btn {
+        background-color: #b08a57;
+        color: white;
+        padding: 8px 15px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-bottom: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="navbar">
+      <div class="logo"><span class="q">Q</span>Ventor</div>
+      <nav class="nav-links">
+        <a href="/index.html">Home</a>
+        <a href="/html/admin.html">Admin</a>
+        <a href="#">Employee</a>
+        <a href="#">Our Services</a>
+        <a href="#">About</a>
+        <a href="#">Contact Us</a>
+      </nav>
+    </header>
+
+    <button
+      class="back-btn"
+      onclick="window.location.href='/html/dashboard.html'"
+    >
+      ⬅ Back to Dashboard
+    </button>
+    <h1>Import/Export Details</h1>
+    <p>List of Import/Export records and their information.</p>
+
+    <!-- Imports Table -->
+    <h2>📥 Import Records</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Product</th>
+          <th>Date</th>
+          <th>Document #</th>
+          <th>Vendor</th>
+          <th>Ordered</th>
+          <th>Billed</th>
+          <th>Received</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody id="importsTable"></tbody>
+    </table>
+
+    <!-- Exports Table -->
+    <h2>📤 Export Records</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Product</th>
+          <th>Date</th>
+          <th>Document #</th>
+          <th>Customer</th>
+          <th>Ordered</th>
+          <th>Billed</th>
+          <th>Shipped</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody id="exportsTable"></tbody>
+    </table>
+
+    <script type="module" src="/js/config.js"></script>
+    <script type="module" src="/js/supabase-client.js"></script>
+    <script type="module" src="/js/import-export-detail.js"></script>
+  </body>
+</html>

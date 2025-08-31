@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>QVentor - Employee Registration</title>
+  <link rel="stylesheet" href="/css/style.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <style>
+    body {
+      background-color: #11224d;
+      font-family: 'Open Sans', sans-serif;
+    }
+    .navbar {
+      position: sticky;
+      top: 0;
+      background-color: #11224d;
+      z-index: 999;
+      padding: 1rem;
+    }
+    .nav-links a {
+      color: white;
+      margin: 0 10px;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    .nav-links a:hover {
+      color: var(--gold);
+    }
+    .form-section {
+      max-width: 900px;
+      margin: 3rem auto;
+      background-color: #11224d;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 8px 15px rgba(0,0,0,0.445);
+      color: white;
+    }
+    .form-section h1 {
+      font-size: 2rem;
+      color: var(--gold);
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    .form-row {
+      display: flex;
+      gap: 15px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+    .form-row input, .form-row select {
+      flex: 1;
+      padding: 0.9rem 1rem;
+      font-size: 1rem;
+      border-radius: 6px;
+      border: none;
+      outline: none;
+    }
+    .form-actions {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .submit-btn, .back-btn {
+      background-color: var(--gold);
+      border: none;
+      padding: 0.9rem 2rem;
+      font-weight: bold;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .submit-btn:hover, .back-btn:hover {
+      background-color: #c49b5a;
+    }
+    /* Popup */
+    .popup {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.6);
+      display: none;
+      justify-content: center;
+      align-items: center;
+    }
+    .popup-content {
+      background: #fff;
+      padding: 2rem;
+      border-radius: 10px;
+      text-align: center;
+      color: #11224d;
+    }
+    .popup-content button {
+      margin-top: 1rem;
+      padding: 0.5rem 1rem;
+      border: none;
+      background: #11224d;
+      color: white;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <header class="navbar">
+    <div class="logo"><span class="q">Q</span>Ventor</div>
+    <nav class="nav-links">
+      <a href="/index.html">Home</a>
+      <a href="/html/admin.html">Admin</a>
+      <a href="/html/employee-login.html" class="active">Employee</a>
+    </nav>
+  </header>
+
+  <section class="form-section">
+    <h1>Employee Registration</h1>
+    <form id="employee-registration-form">
+      <div class="form-row">
+        <input type="text" id="employee-fullname" placeholder="Full Name" required />
+        <input type="email" id="employee-email" placeholder="Email" required />
+        <input type="tel" id="employee-phone" placeholder="Phone No." required />
+      </div>
+      <div class="form-row">
+        <input type="text" id="employee-companyname" placeholder="Company Name" required />
+        <select id="employee-department" required>
+          <option value="" disabled selected>Select Department</option>
+          <option value="Sector 1">Sector 1</option>
+          <option value="Sector 2">Sector 2</option>
+          <option value="Sector 3">Sector 3</option>
+        </select>
+        <select id="employee-role" required>
+          <option value="" disabled selected>Select Role</option>
+          <option value="Category A">Category A</option>
+          <option value="Category B">Category B</option>
+          <option value="Category C">Category C</option>
+        </select>
+      </div>
+      <div class="form-row">
+        <input type="password" id="employee-password" placeholder="Password" required />
+        <input type="password" id="employee-confirmpassword" placeholder="Confirm Password" required />
+      </div>
+      <div class="form-actions">
+        <button type="button" class="back-btn" onclick="window.location.href='access-details.html'">⬅ Back</button>
+        <button type="submit" class="submit-btn">Register</button>
+      </div>
+    </form>
+  </section>
+
+  <div class="popup" id="popup">
+    <div class="popup-content">
+      Employee registered successfully!
+      <br />
+      <button onclick="closePopup()">OK</button> 
+    </div>
+  </div>
+
+  <script>
+    function closePopup() {
+      document.getElementById("popup").style.display = "none";
+    }
+  </script>
+  <script type="module" src="/js/config.js"></script>
+  <script type="module" src="/js/supabase-client.js"></script>
+  <script type="module" src="/js/employee-registration.js"></script>
+</body>
+</html>

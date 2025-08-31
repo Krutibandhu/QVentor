@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Report Summary - QVentor</title>
+  <link rel="stylesheet" href="/css/style.css" />
+  <style>
+    :root {
+      --dark-blue: #0a1a3d;
+      --gold: #d4af7a;
+      --white: #ffffff;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: var(--dark-blue);
+      color: var(--white);
+      text-align: center;
+      margin: 0;
+      padding: 0;
+    }
+
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      background-color: var(--dark-blue);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .logo {
+      font-size: 2rem;
+      font-weight: bold;
+      font-family: "Playfair Display", serif;
+    }
+
+    .logo .q {
+      color: var(--gold);
+    }
+
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      padding: 8px 12px;
+      font-size: 1.2em;
+    }
+
+    h1 {
+      margin: 30px 0 20px;
+      color: var(--gold);
+      font-size: 28px;
+    }
+/* Navbar */
+.navbar {
+display: flex;
+justify-content: space-between;
+align-items: center;
+padding: 1rem 2rem;
+background: var(--dark-blue);
+color: var(--white);
+position: sticky;
+top: 0;
+z-index: 1000;
+}
+
+.logo {
+font-size: 1.8rem;
+font-weight: bold;
+}
+.logo .q { color: var(--gold); }
+
+.nav-links {
+display: flex;
+gap: 1.5rem;
+}
+.nav-links a {
+color: var(--white);
+text-decoration: none;
+position: relative;
+}
+.nav-links a:hover { color: var(--gold); }
+.nav-links a.active { color: var(--gold); font-weight: bold; }
+
+.menu-icon {
+display: none;
+font-size: 1.8rem;
+cursor: pointer;
+}
+
+/* Mobile menu */
+@media (max-width: 768px) {
+.nav-links {
+  position: absolute;
+  top: 65px;
+  right: 0;
+  background: var(--dark-blue);
+  flex-direction: column;
+  width: 100%;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+}
+.nav-links.active { max-height: 300px; }
+.menu-icon { display: block; }
+}
+
+    .summary-box {
+      background: var(--dark-blue);
+      color: white;
+      padding: 30px;
+      border-radius: 12px;
+      width: 600px;
+      margin: 20px auto 60px;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.452);
+      text-align: center;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 0 auto;
+      text-align: left;
+    }
+
+    td {
+      padding: 10px 15px;
+      font-size: 16px;
+      vertical-align: top;
+    }
+
+    td:first-child {
+      font-weight: bold;
+      color: var(--gold);
+      width: 50%;
+    }
+
+    .predict-btn {
+      display: inline-block;
+      margin-top: 25px;
+      padding: 14px 40px;
+      background: var(--gold);
+      color: var(--dark-blue);
+      font-size: 18px;
+      font-weight: bold;
+      border-radius: 8px;
+      text-decoration: none;
+      cursor: pointer;
+      border: none;
+    }
+
+    .predict-btn:hover {
+      background: #b8935f;
+    }
+
+.back-btn {
+background-color: #b08a57;
+color: white;
+border: none;
+padding: 8px 15px;
+cursor: pointer;
+margin-bottom: 1rem;
+}
+.back-btn:hover { background-color: #9a774a; }
+
+
+  </style>
+</head>
+<body>
+<header class="navbar">
+  <div class="logo"><span class="q">Q</span>Ventor</div>
+  <nav class="nav-links">
+    <a href="/index.html">Home</a>
+    <a href="/html/admin.html" class="active">Admin</a>
+    <a href="/html/employee-login.html">Employee</a>
+    <a href="/html/our-service.html">Our Services</a>
+    <a href="/html/About.html">About</a>
+    <a href="/html/contact-us.html">Contact Us</a>
+  </nav>
+  <div class="menu-icon">&#9776;</div>
+</header>
+
+<h1>Report Summary</h1>
+<div class="summary-box">
+  <form id="summaryForm">
+    <table>
+      <tr>
+        <td>Unit Cost Price:</td>
+        <td data-field="Unit_Cost">
+        </td>
+      </tr>
+      <tr>
+        <td>Order Quantity:</td>
+        <td data-field="Order_Quantity">
+        </td>
+      </tr>
+      <tr>
+        <td>Unit Sale Price:</td>
+        <td data-field="Unit_Sale">
+        </td>
+      </tr>
+      <tr>
+        <td>Total Cost:</td>
+        <td data-field="Total_Cost">
+        </td>
+      </tr>
+      <tr>
+        <td>Revenue:</td>
+        <td data-field="Revenue">
+        </td>
+      </tr>
+      <tr>
+        <td>Order Month:</td>
+        <td data-field="Order_Month">
+        </td>
+      </tr>
+      <tr>
+        <td>Year:</td>
+        <td data-field="Year">
+        </td>
+      </tr>
+      <tr>
+        <td>Customer Type:</td>
+        <td data-field="Customer_Type">
+        </td>
+      </tr>
+      <tr>
+        <td>Product:</td>
+        <td data-field="Product_Name">
+        </td>
+      </tr>
+    </table>
+
+    <button type="submit" class="predict-btn">Predict</button>
+  </form>
+  <hr />
+  <h2 id="predictionResult" style="color: var(--gold)">
+    Prediction (Profit/Loss): (Click Predict)
+  </h2>
+</div>
+<button class="back-btn" onclick="window.location.href='/html/audit-report.html'">⬅ Back</button>
+<script>
+  // Read query params from URL
+  const urlParams = new URLSearchParams(window.location.search);
+
+  const formData = {
+    Unit_Cost: urlParams.get("Unit_Cost"),
+    Order_Quantity: urlParams.get("Order_Quantity"),
+    Unit_Sale_Price: urlParams.get("Unit_Sale"),
+    Total_Cost: urlParams.get("Total_Cost"),
+    Revenue: urlParams.get("Revenue"),
+    Order_Month: urlParams.get("Order_Month"),
+    Year: urlParams.get("Year"),
+    Customer_Type: urlParams.get("Customer_Type"),
+    Product_Name: urlParams.get("Product_Name")
+  };
+
+  // Fill the table values
+  document.querySelector("td[data-field='Unit_Cost']").innerText = formData.Unit_Cost;
+  document.querySelector("td[data-field='Order_Quantity']").innerText = formData.Order_Quantity;
+  document.querySelector("td[data-field='Unit_Sale']").innerText = formData.Unit_Sale_Price;
+  document.querySelector("td[data-field='Total_Cost']").innerText = formData.Total_Cost;
+  document.querySelector("td[data-field='Revenue']").innerText = formData.Revenue;
+  document.querySelector("td[data-field='Order_Month']").innerText = formData.Order_Month;
+  document.querySelector("td[data-field='Year']").innerText = formData.Year;
+  document.querySelector("td[data-field='Customer_Type']").innerText = formData.Customer_Type;
+  document.querySelector("td[data-field='Product_Name']").innerText = formData.Product_Name;
+
+  // Call Django API manually
+  document.getElementById("summaryForm").addEventListener("submit", async (e) => {
+    e.preventDefault(); // stop page reload
+    try {
+      const response = await fetch("http://127.0.0.1:8000/predict/", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(formData)
+    });
+
+    const data = await response.json();
+    document.getElementById("predictionResult").innerText =
+      "Prediction (Profit/Loss): " + (data.prediction ?? data.error);
+  } catch (error) {
+    document.getElementById("predictionResult").innerText =
+      "Error calling API: " + error;
+  }
+});
+</script>
+
+</body>
+</html>

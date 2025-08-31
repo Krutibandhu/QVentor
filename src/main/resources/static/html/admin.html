@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>QVentor - Admin Registration</title>
+    <!-- Link to external CSS -->
+    <link rel="stylesheet" href="/css/style.css" />
+    <!-- GSAP animation library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+
+    <style>
+      /* Container for the entire form section */
+      .form-section {
+        max-width: 900px; /* Max width for desktop */
+        margin: 3rem auto 5rem; /* Center with top & bottom spacing */
+        background-color: #11224d; /* Dark blue background */
+        padding: 2rem 2.5rem; /* Inner spacing */
+        border-radius: 10px; /* Rounded corners */
+        box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3); /* Subtle shadow */
+        color: var(--white); /* Text color */
+        font-family: "Open Sans", sans-serif; /* Font */
+      }
+
+      /* Navbar hover underline animation */
+      .nav-links a {
+        position: relative;
+        color: white;
+        text-decoration: none;
+        padding: 8px 12px;
+        transition: color 0.3s ease;
+        font-size: 1.2em;
+      }
+
+      .nav-links a::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 0%;
+        height: 2px;
+        background: var(--gold); /* underline color */
+        transition: width 0.3s ease-in-out;
+      }
+
+      .nav-links a:hover {
+        color: var(--gold);
+      }
+
+      .nav-links a:hover::after {
+        width: 100%;
+      }
+
+      /* Active page link styling */
+      .nav-links a.active {
+        color: var(--gold);
+        font-weight: bold;
+      }
+
+      .nav-links a.active::after {
+        width: 100%;
+      }
+
+      /* Heading style inside form section */
+      .form-section h1 {
+        font-family: "Playfair Display", serif; /* Serif font for heading */
+        font-size: 2.2rem;
+        color: var(--gold); /* Gold color */
+        text-align: center; /* Center align */
+        margin-bottom: 2rem; /* Space below heading */
+      }
+
+      /* Form rows container - groups input fields horizontally */
+      .form-row {
+        display: flex;
+        gap: 1.5rem; /* Space between inputs */
+        margin-bottom: 1.8rem; /* Space below the row */
+      }
+
+      /* Special styling for single-row form groups (centered) */
+      .form-row.single {
+        justify-content: center;
+      }
+
+      /* Input fields inside form rows */
+      .form-row input {
+        flex: 1; /* Each input shares equal width */
+        padding: 0.9rem 1rem; /* Padding inside inputs */
+        font-size: 1rem;
+        border-radius: 6px; /* Rounded corners */
+        border: none; /* Remove default border */
+        outline: none; /* Remove outline on focus */
+        transition: box-shadow 0.3s ease; /* Smooth shadow on focus */
+      }
+
+      /* Input focus effect */
+      .form-row input:focus {
+        box-shadow: 0 0 8px var(--gold); /* Gold glowing shadow */
+      }
+
+      /* Submit button style */
+      .submit-btn {
+        display: block;
+        margin: 0 auto; /* Center horizontally */
+        background-color: var(--gold);
+        color: var(--dark-blue);
+        border: none;
+        padding: 0.9rem 2.5rem;
+        font-weight: 700;
+        font-size: 1.1rem;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+
+      /* Submit button hover effect */
+      .submit-btn:hover {
+        background-color: #c49b5a;
+      }
+
+      /* Info section below form */
+      .info-login {
+        text-align: center;
+        margin-top: 1.5rem;
+        color: gray;
+        font-size: 1rem;
+      }
+
+      /* Login button styled similar to submit */
+      .login-btn {
+        display: inline-block;
+        margin-top: 0.8rem;
+        background-color: var(--gold);
+        color: var(--dark-blue);
+        border: none;
+        padding: 0.7rem 2rem;
+        font-weight: 700;
+        font-size: 1rem;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+
+      .login-btn:hover {
+        background-color: #c49b5a;
+      }
+
+      /* Responsive styles for smaller screens */
+      @media (max-width: 768px) {
+        /* Stack inputs vertically on smaller screens */
+        .form-row {
+          flex-direction: column;
+        }
+        /* Center single-row inputs with max width */
+        .form-row.single {
+          max-width: 400px;
+          margin: 0 auto 1.8rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Sticky Navbar -->
+    <header class="navbar">
+      <div class="logo"><span class="q">Q</span>Ventor</div>
+      <nav class="nav-links">
+        <a href="/index.html">Home</a>
+        <a href="/html/admin.html">Admin</a>
+        <a href="/html/employee-login.html">Employee</a>
+        <a href="/html/our-service.html">Our Services</a>
+        <a href="/html/About.html">About</a>
+        <a href="/html/contact-us.html">Contact Us</a>
+      </nav>
+      <div class="menu-icon">&#9776;</div>
+    </header>
+
+    <!-- Registration Form Section -->
+    <section class="form-section">
+      <h1>Admin Registration</h1>
+      <form id="admin-registration-form">
+        <!-- First row of inputs -->
+        <div class="form-row">
+          <input
+            id="admin-fullname"
+            type="text"
+            placeholder="Full Name"
+            required
+          />
+          <input id="admin-email" type="email" placeholder="Gmail" required />
+          <input id="admin-phone" type="tel" placeholder="Phone No." required />
+        </div>
+
+        <!-- Second row of inputs -->
+        <div class="form-row">
+          <input
+            id="admin-password"
+            type="password"
+            placeholder="Password"
+            required
+          />
+          <input
+            id="admin-confirmpassword"
+            type="password"
+            placeholder="Confirm Password"
+            required
+          />
+          <input
+            id="admin-companyname"
+            type="text"
+            placeholder="Company Name"
+            required
+          />
+        </div>
+
+        <!-- Third row of inputs -->
+        <div class="form-row">
+          <input
+            id="admin-whadress"
+            type="text"
+            placeholder="WH Adress"
+            required
+          />
+          <input id="admin-whname" type="text" placeholder="WH Name" required />
+          <input
+            id="admin-role"
+            list="roleOptions"
+            placeholder="Role"
+            required
+          />
+          <datalist id="roleOptions">
+            <option value="Admin"></option>
+          </datalist>
+        </div>
+
+        <!-- Submit button -->
+        <button type="submit" class="submit-btn">SUBMIT</button>
+
+        <!-- Login button -->
+        <div class="info-login">
+          <p>Already have an account?</p>
+          <button
+            type="button"
+            class="login-btn"
+            onclick="window.location.href='/html/login.html'"
+          >
+            Login here
+          </button>
+        </div>
+      </form>
+    </section>
+
+    <!-- Back arrow -->
+    <button
+      class="side-arrow back"
+      onclick="location.href='/html/index.html'"
+      aria-label="Go back to Home page"
+    >
+      &#8249;
+    </button>
+
+    <!-- Forward arrow -->
+    <button
+      class="side-arrow forward"
+      onclick="window.location.href='/html/employee-login.html'"
+      aria-label="Go to Employee page"
+    >
+      &#8250;
+    </button>
+
+    <script src="/js/script.js"></script>
+    <script type="module" src="/js/admin-registration.js"></script>
+    <script type="module" src="/js/config.js"></script>
+    <script type="module" src="/js/supabase-client.js"></script>
+  </body>
+</html>

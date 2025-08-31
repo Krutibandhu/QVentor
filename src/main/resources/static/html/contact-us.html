@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>QVentor - Contact Us</title>
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <style>
+    :root {
+      --dark-blue: #0a1a3d;
+      --gold: #d4af7a;
+      --white: #ffffff;
+    }
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background-color: var(--dark-blue);
+      color: white;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    /* Navbar */
+    .navbar {
+      position: sticky;
+      top: 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      background-color: var(--dark-blue);
+      z-index: 1000;
+      opacity: 0; /* for GSAP */
+      transform: translateY(-30px);
+    }
+    .logo {
+      font-size: 2.6rem;
+      font-weight: bold;
+      font-family: 'Playfair Display', serif;
+    }
+    .logo .q {
+      color: var(--gold);
+    }
+
+    /* Navbar hover underline animation */
+    .nav-links a {
+      position: relative;
+      color: white;
+      text-decoration: none;
+      padding: 8px 12px;
+      transition: color 0.3s ease;
+      font-size: 1.2em;
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 0%;
+      height: 2px;
+      background: var(--gold);
+      transition: width 0.3s ease-in-out;
+    }
+    .nav-links a:hover {
+      color: var(--gold);
+    }
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+    .nav-links a.active {
+      color: var(--gold);
+      font-weight: bold;
+    }
+    .nav-links a.active::after {
+      width: 100%;
+    }
+
+    /* Hamburger menu icon */
+    .menu-icon {
+      display: none;
+      font-size: 1.8rem;
+      cursor: pointer;
+      color: var(--white);
+    }
+
+    /* Layout */
+    .mission-contact-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 40px;
+      padding: 50px 10%;
+      flex-wrap: wrap;
+      flex: 1;
+    }
+    .box {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 40px;
+      border-radius: 12px;
+      flex: 1;
+      min-width: 600px;
+      max-width: 600px;
+      box-shadow: 0 4px 25px rgba(0, 0, 0, 0.35);
+      opacity: 0; /* for GSAP */
+      transform: translateY(30px);
+    }
+    .box:hover {
+      transform: translateY(-5px);
+    }
+    .box h2 {
+      margin-bottom: 15px;
+      color: var(--gold);
+      font-size: 2.1em;
+    }
+
+    /* Contact Info */
+    .contact-item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+    .contact-item i {
+      color: var(--gold);
+      font-size: 1.3em;
+      margin-right: 10px;
+    }
+
+    /* Feedback form */
+    .feedback-form input,
+    .feedback-form textarea {
+      width: 93%;
+      padding: 12px;
+      margin: 5px 0;
+      border-radius: 6px;
+      border: none;
+      outline: none;
+      font-size: 1.05em;
+    }
+    .feedback-form textarea {
+      resize: vertical;
+    }
+    .feedback-form button {
+      background-color: var(--gold);
+      color: var(--dark-blue);
+      padding: 12px 18px;
+      border: none;
+      cursor: pointer;
+      border-radius: 6px;
+      font-weight: bold;
+      transition: background-color 0.3s;
+    }
+    .feedback-form button:hover {
+      background-color: #c19b6b;
+    }
+
+    /* Social media icons */
+    .social-icons {
+      margin-top: 15px;
+    }
+    .social-icons a {
+      font-size: 1.5em;
+      margin-right: 10px;
+    }
+    .social-icons .fa-facebook-f { color: #1877f2; }
+    .social-icons .fa-twitter { color: #1da1f2; }
+    .social-icons .fa-linkedin-in { color: #0a66c2; }
+    .social-icons .fa-instagram { color: #e1306c; }
+
+    /* Back arrow */
+    .side-arrow {
+      position: fixed;
+      background-color: var(--gold);
+      color: var(--dark-blue);
+      border: none;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      cursor: pointer;
+      font-size: 24px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: background-color 0.3s ease;
+      z-index: 1000;
+    }
+    .side-arrow.back {
+      left: 20px;
+      top: 80%;
+      transform: translateY(-50%);
+    }
+    .side-arrow.back:hover {
+      background-color: #9a774a;
+    }
+
+    /* Footer */
+    footer {
+      background: #06132aa2;
+      padding: 20px;
+      text-align: center;
+      font-size: 0.9em;
+      color: #ccc;
+      margin-top: auto;
+      opacity: 0; /* for GSAP */
+      transform: translateY(30px);
+    }
+    footer a {
+      color: var(--gold);
+      text-decoration: none;
+    }
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    /* Mobile adjustments */
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 70px;
+        right: 0;
+        background-color: var(--dark-blue);
+        width: 220px;
+        padding: 10px;
+      }
+      .nav-links.show {
+        display: flex;
+      }
+      .menu-icon {
+        display: block;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navbar -->
+  <header class="navbar">
+    <div class="logo"><span class="q">Q</span>Ventor</div>
+    <nav class="nav-links">
+      <a href="/index.html">Home</a>
+      <a href="/html/admin.html">Admin</a>
+      <a href="/html/employee-login.html">Employee</a>
+      <a href="/html/our-service.html">Our Services</a>
+      <a href="/html/About.html">About</a>
+      <a href="/html/contact-us.html" class="active">Contact Us</a>
+    </nav>
+    <div class="menu-icon"><i class="fas fa-bars"></i></div>
+  </header>
+
+  <!-- Main Content -->
+  <section class="mission-contact-container">
+    <!-- Contact Us -->
+    <div class="box">
+      <h2>Contact Us</h2>
+      <div class="contact-item"><i class="fas fa-map-marker-alt"></i> Cuttack, Odisha 753014, IN</div>
+      <div class="contact-item"><i class="fas fa-phone"></i> +91 7873647330</div>
+      <div class="contact-item"><i class="fas fa-envelope"></i> qventor@gmail.com</div>
+      <div class="feedback-form"> 
+        <input type="text" placeholder="Your Name" required>
+        <input type="email" placeholder="Your Email" required>
+        <div class="social-icons">
+          <a href="https://facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
+          <a href="https://twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
+          <a href="https://linkedin.com" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+          <a href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Our Mission -->
+    <div class="box">
+      <h2>Our Mission</h2>
+      <p>
+        At QVentor, our mission is to revolutionize inventory management through cutting-edge QR technology.
+        We aim to provide businesses with fast, accurate, and seamless solutions to manage their stock effortlessly.
+        Our goal is to empower companies with the tools they need to stay ahead in today's competitive market.
+      </p>
+      <div class="feedback-form">
+        <textarea rows="3" placeholder="Your Feedback" required></textarea>
+        <button type="button" id="feedbackBtn">Send Feedback</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Back arrow -->
+  <button class="side-arrow back" onclick="location.href='/html/About.html'" aria-label="Go back to About page">
+    &#8249;
+  </button>
+
+  <!-- Footer -->
+  <footer>
+    &copy; | 2025 QVentor. All rights reserved. | 
+    <!-- <a href="#">Privacy Policy</a> | 
+    <a href="#">Terms of Service</a> -->
+  </footer>
+
+  <!-- GSAP Animations -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+  <script>
+    gsap.registerPlugin(ScrollTrigger);
+
+    // Navbar animation
+    gsap.to(".navbar", {
+      opacity: 1,
+      y: 0,
+      duration: 0.8,
+      ease: "power2.out"
+    });
+
+    // Box animations
+    gsap.utils.toArray(".box").forEach((box, i) => {
+      gsap.to(box, {
+        opacity: 1,
+        y: 0,
+        duration: 0.8,
+        delay: i * 0.2,
+        ease: "power2.out",
+        scrollTrigger: {
+          trigger: box,
+          start: "top 80%",
+          toggleActions: "play none none none"
+        }
+      });
+    });
+
+    // Footer animation
+    gsap.to("footer", {
+      opacity: 1,
+      y: 0,
+      duration: 1,
+      ease: "power2.out",
+      scrollTrigger: {
+        trigger: "footer",
+        start: "top 90%",
+        toggleActions: "play none none none"
+      }
+    });
+
+    // Auto-highlight active nav link
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      if (link.href === window.location.href) {
+        link.classList.add('active');
+      }
+    });
+
+    // Feedback popup
+    document.getElementById('feedbackBtn').addEventListener('click', function() {
+      alert('Thank you for your feedback!');
+    });
+
+    // Mobile menu toggle
+    document.querySelector(".menu-icon").addEventListener("click", () => {
+      document.querySelector(".nav-links").classList.toggle("show");
+    });
+    // Footer animation
+gsap.to("footer", {
+  opacity: 1,
+  y: 0,
+  duration: 1,
+  ease: "power2.out",
+  scrollTrigger: {
+    trigger: "footer",
+    start: "top bottom", // ensures it triggers even if footer is in view on load
+    toggleActions: "play none none none"
+  }
+});
+
+  </script>
+</body>
+</html>

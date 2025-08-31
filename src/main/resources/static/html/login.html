@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Login - QVentor</title>
+    <link rel="stylesheet" href="/css/style.css" />
+
+    <style>
+      :root {
+        --dark-blue: #11224d;
+        --gold: #d4af7a;
+        --white: #ffffff;
+      }
+
+      /* Navbar */
+      .navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem 2rem;
+        background: var(--dark-blue);
+        color: var(--white);
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+      }
+
+      .logo {
+        font-size: 1.8rem;
+        font-weight: bold;
+      }
+      .logo .q {
+        color: var(--gold);
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 1.5rem;
+      }
+      .nav-links a {
+        color: var(--white);
+        text-decoration: none;
+        position: relative;
+      }
+      .nav-links a:hover {
+        color: var(--gold);
+      }
+      .nav-links a.active {
+        color: var(--gold);
+        font-weight: bold;
+      }
+
+      .menu-icon {
+        display: none;
+        font-size: 1.8rem;
+        cursor: pointer;
+      }
+
+      /* Mobile menu */
+      @media (max-width: 768px) {
+        .nav-links {
+          position: absolute;
+          top: 65px;
+          right: 0;
+          background: var(--dark-blue);
+          flex-direction: column;
+          width: 100%;
+          max-height: 0;
+          overflow: hidden;
+          transition: max-height 0.3s ease;
+        }
+        .nav-links.active {
+          max-height: 300px;
+        }
+        .menu-icon {
+          display: block;
+        }
+      }
+
+      /* Form Container */
+      .form-section {
+        max-width: 500px;
+        margin: 5rem auto;
+        background-color: var(--dark-blue);
+        padding: 2rem;
+        border-radius: 10px;
+        box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+        color: var(--white);
+        text-align: center;
+      }
+
+      .form-section h1 {
+        font-size: 2rem;
+        color: var(--gold);
+        margin-bottom: 2rem;
+      }
+      .form-row {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem; /* ensures space between fields */
+      }
+
+      .form-row input {
+        padding: 0.9rem 1rem;
+        font-size: 1rem;
+        border-radius: 6px;
+        border: none;
+        outline: none;
+        transition: box-shadow 0.3s ease;
+      }
+      .form-row input:focus {
+        box-shadow: 0 0 8px var(--gold);
+      }
+
+      .submit-btn {
+        background-color: var(--gold);
+        color: var(--dark-blue);
+        border: none;
+        padding: 0.9rem 2.5rem;
+        font-weight: 700;
+        font-size: 1.1rem;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        margin-top: 1rem;
+      }
+      .submit-btn:hover {
+        background-color: #c49b5a;
+      }
+
+      .back-btn {
+        background-color: #b08a57;
+        color: white;
+        border: none;
+        padding: 8px 15px;
+        cursor: pointer;
+        margin-bottom: 1rem;
+      }
+      .back-btn:hover {
+        background-color: #9a774a;
+      }
+
+      /* Responsive form */
+      @media (max-width: 500px) {
+        .form-section {
+          margin: 2rem 1rem;
+          padding: 1.5rem;
+        }
+        .form-section h1 {
+          font-size: 1.6rem;
+        }
+        .submit-btn {
+          width: 100%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="navbar">
+      <div class="logo"><span class="q">Q</span>Ventor</div>
+      <nav class="nav-links">
+        <a href="/index.html">Home</a>
+        <a href="/html/admin.html" class="active">Admin</a>
+        <a href="/html/employee-login.html">Employee</a>
+        <a href="/html/our-service.html">Our Services</a>
+        <a href="/html/About.html">About</a>
+        <a href="/html/contact-us.html">Contact Us</a>
+      </nav>
+      <div class="menu-icon">&#9776;</div>
+    </header>
+
+    <section class="form-section">
+      <button
+        class="back-btn"
+        onclick="window.location.href='/html/admin.html'"
+      >
+        ⬅ Back to Admin Section
+      </button>
+      <h1>Admin Login</h1>
+      <form id="login-form">
+        <div class="form-row">
+          <input id="login-email" type="email" placeholder="Gmail" required />
+          <input
+            id="login-password"
+            type="password"
+            placeholder="Password"
+            required
+          />
+        </div>
+
+        <button type="submit" class="submit-btn">LOGIN</button>
+      </form>
+    </section>
+
+    <script>
+      document.querySelector(".menu-icon").addEventListener("click", () => {
+        document.querySelector(".nav-links").classList.toggle("active");
+      });
+      // Highlight the active link based on current URL
+      const currentPage = window.location.pathname.split("/").pop();
+      const links = document.querySelectorAll(".nav-links a");
+
+      links.forEach((link) => {
+        if (link.getAttribute("href") === currentPage) {
+          link.classList.add("active");
+        }
+      });
+    </script>
+
+    <script type="module" src="/js/login.js"></script>
+    <script type="module" src="/js/config.js"></script>
+    <script type="module" src="/js/supabase-client.js"></script>
+  </body>
+</html>

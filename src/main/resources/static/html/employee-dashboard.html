@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Employee Dashboard</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+
+    <style>
+      :root {
+        --dark-blue: #0a1a3d;
+        --gold: #d4af7a;
+        --white: #ffffff;
+      }
+
+      body {
+        font-family: "Open Sans", sans-serif;
+        margin: 0;
+        padding: 0;
+        background: var(--dark-blue);
+        color: var(--white);
+      }
+
+      /* Navbar */
+      .navbar {
+        position: sticky;
+        top: 0;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem 2rem;
+        background-color: var(--dark-blue);
+        opacity: 0;
+        transform: translateY(-50px);
+        z-index: 1000;
+      }
+      .logo {
+        font-size: 2.6rem;
+        font-weight: bold;
+        font-family: "Playfair Display", serif;
+      }
+      .logo .q {
+        color: var(--gold);
+      }
+
+      .nav-links a {
+        color: var(--white);
+        text-decoration: none;
+        padding: 8px 12px;
+        font-size: 1.2em;
+        position: relative;
+      }
+      .nav-links a::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 0%;
+        height: 2px;
+        background: var(--gold);
+        transition: width 0.3s;
+      }
+      .nav-links a:hover {
+        color: var(--gold);
+      }
+      .nav-links a:hover::after {
+        width: 100%;
+      }
+      .nav-links a.active {
+        color: var(--gold);
+        font-weight: bold;
+      }
+      .nav-links a.active::after {
+        width: 100%;
+      }
+
+      /* Layout */
+      .dashboard {
+        display: flex;
+        flex-wrap: wrap;
+      }
+
+      /* Sidebar */
+      .sidebar {
+        width: 220px;
+        background-color: var(--gold);
+        padding: 20px;
+        min-height: 100vh;
+        opacity: 0;
+        transform: translateX(-100px);
+      }
+      .sidebar img {
+        width: 60px;
+        border-radius: 50%;
+      }
+      .sidebar h3 {
+        margin: 10px 0;
+        font-size: 16px;
+      }
+      .sidebar a {
+        display: block;
+        padding: 10px 15px;
+        margin-bottom: 8px;
+        border-radius: 5px;
+        color: black;
+        font-weight: bold;
+        text-decoration: none;
+        transition: background-color 0.3s;
+      }
+      .sidebar a:hover {
+        background-color: #9a774a;
+        color: white;
+      }
+      .sidebar hr {
+        margin: 20px 0;
+        border: none;
+        border-top: 1px solid #9a774a;
+      }
+
+      /* Main */
+      .main {
+        flex-grow: 1;
+        padding: 20px;
+      }
+      .back-btn {
+        background-color: #b08a57;
+        color: white;
+        border: none;
+        padding: 8px 15px;
+        cursor: pointer;
+        border-radius: 5px;
+        margin-bottom: 20px;
+        font-weight: bold;
+        transition: background-color 0.3s;
+      }
+      .back-btn:hover {
+        background-color: #9a774a;
+      }
+
+      .status-cards {
+        display: flex;
+        gap: 20px;
+        justify-content: center;
+        flex-wrap: wrap;
+        margin-bottom: 30px;
+      }
+      .status-card {
+        width: 150px;
+        min-height: 70px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        border-radius: 8px;
+        font-weight: bold;
+        text-align: center;
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      .total {
+        background-color: #c6a06fe0;
+        color: black;
+      }
+      .done {
+        background-color: #d4b07b;
+        color: black;
+      }
+      .pending {
+        background-color: #a69b94;
+        color: black;
+      }
+      .product {
+        background-color: #b49989;
+        color: black;
+      }
+      .card-value {
+        font-size: 20px;
+      }
+      .card-label {
+        font-size: 12px;
+      }
+
+      /* Actions */
+      .action-section {
+        display: flex;
+        justify-content: center;
+        gap: 50px;
+        margin-top: 40px;
+        flex-wrap: wrap;
+      }
+      .icon-box {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        cursor: pointer;
+        transition: transform 0.3s;
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      .icon-box:hover {
+        transform: scale(1.05);
+      }
+      .icon-box img,
+      .icon-box .scan-box {
+        width: 120px;
+        height: 120px;
+        border-radius: 12px;
+        background: var(--dark-blue);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 12px;
+      }
+      .icon-box p {
+        font-weight: bold;
+        color: #f1f1f1;
+        font-size: 15px;
+        margin: 0;
+      }
+
+      /* Scan box */
+      .scan-box {
+        border: 2px solid white;
+        color: white;
+        font-size: 12px;
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="navbar">
+      <div class="logo"><span class="q">Q</span>Ventor</div>
+      <nav class="nav-links">
+        <a href="/index.html">Home</a>
+        <a href="/html/admin.html">Admin</a>
+        <a href="/html/employee-login.html" class="active">Employee</a>
+        <a href="/html/our-service.html">Our Services</a>
+        <a href="/html/About.html">About</a>
+        <a href="/html/contact-us.html">Contact Us</a>
+      </nav>
+    </header>
+
+    <div class="dashboard">
+      <div class="sidebar" id="sidebarMenu">
+        <img
+          id="employeeImage"
+          src="/assets/adminimg.png"
+          alt="Employee Photo"
+        />
+        <h3 id="employeeDisplayName">Employee Name</h3>
+        <a href="/html/employee-profile.html">Profile</a>
+        <a href="/html/employee-update.html">Update Details</a>
+        <a href="/html/order-history.html">Order-history</a>
+        <a href="/html/product-details.html">Product-details</a>
+        <hr />
+        <a href="/html/emp-settings.html">Settings</a>
+        <a href="/html/emp-audit.html">Audit Report</a>
+        <a href="/html/complaint-file.html">Complaint-file</a>
+        <a href="/html/my-complain.html">My Complaint Details</a>
+      </div>
+
+      <div class="main">
+        <button class="back-btn" id="logoutBtn">⬅ Log out</button>
+        <h1>Employee Dashboard</h1>
+
+        <div class="status-cards" id="dashboardCards">
+          <div class="status-card total">
+            <div class="card-value">0</div>
+            <div class="card-label">TOTAL Orders</div>
+          </div>
+          <div class="status-card done">
+            <div class="card-value">0</div>
+            <div class="card-label">ORDER DONE</div>
+          </div>
+          <div class="status-card pending">
+            <div class="card-value">0</div>
+            <div class="card-label">ORDER PENDING</div>
+          </div>
+          <div class="status-card product">
+            <div class="card-value">0</div>
+            <div class="card-label">NO. OF PRODUCT</div>
+          </div>
+        </div>
+
+        <div class="action-section">
+          <div
+            class="icon-box"
+            onclick="window.location.href='/html/scanner.html'"
+          >
+            <div class="scan-box"><span>SCAN</span></div>
+            <p>Scanner</p>
+          </div>
+
+          <div
+            class="icon-box"
+            onclick="window.location.href='/html/add-product.html'"
+          >
+            <img src="/assets/Add product.png" alt="Add Product" />
+            <p>Add Product</p>
+          </div>
+          <div
+            class="icon-box"
+            onclick="window.location.href='/html/report.html'"
+          >
+            <img src="/assets/Report.png" alt="Report" />
+            <p>Report</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        // Animations
+        gsap.to(".navbar", {
+          opacity: 1,
+          y: 0,
+          duration: 1,
+          ease: "power3.out",
+        });
+        gsap.to(".sidebar", {
+          opacity: 1,
+          x: 0,
+          duration: 1,
+          delay: 0.2,
+          ease: "power3.out",
+        });
+        gsap.to(".status-card", {
+          opacity: 1,
+          y: 0,
+          stagger: 0.2,
+          duration: 0.8,
+          delay: 0.5,
+          ease: "power3.out",
+        });
+        gsap.to(".icon-box", {
+          opacity: 1,
+          y: 0,
+          stagger: 0.2,
+          duration: 0.8,
+          delay: 1,
+          ease: "power3.out",
+        });
+      });
+    </script>
+    <script src="/js/config.js" type="module"></script>
+    <script src="/js/supabase-client.js" type="module"></script>
+    <script src="/js/employee-dashboard.js" type="module"></script>
+  </body>
+</html>

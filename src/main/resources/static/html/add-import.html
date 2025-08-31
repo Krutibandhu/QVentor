@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Add Import</title>
+    <link rel="stylesheet" href="/css/style.css" />
+    <style>
+      :root {
+        --dark-blue: #0a1a3d;
+        --gold: #d4af7a;
+        --white: #ffffff;
+      }
+
+      body {
+        margin: 0;
+        padding: 0;
+        background: var(--dark-blue);
+        font-family: "Open Sans", sans-serif;
+        color: var(--white);
+        text-align: center;
+      }
+
+      h1 {
+        margin-top: 80px;
+        color: var(--gold);
+        font-size: 2rem;
+      }
+
+      .navbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        padding: 1rem 2rem;
+        background: var(--dark-blue);
+        display: flex;
+        align-items: center;
+        border-bottom: 1px solid var(--gold);
+        z-index: 1000;
+      }
+
+      .logo {
+        font-size: 2rem;
+        font-weight: bold;
+        font-family: "Playfair Display", serif;
+      }
+
+      .logo .q {
+        color: var(--gold);
+      }
+
+      .back-btn {
+        margin-top: 90px;
+        background: var(--gold);
+        color: var(--dark-blue);
+        padding: 10px 20px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        font-weight: bold;
+        transition: background 0.3s ease;
+      }
+
+      .back-btn:hover {
+        background: #b08a57;
+        color: var(--white);
+      }
+
+      .form-container {
+        max-width: 600px;
+        margin: 40px auto;
+        background: #11224d;
+        padding: 30px;
+        border-radius: 12px;
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.5);
+        text-align: left;
+        border: 1px solid var(--gold);
+      }
+
+      form label {
+        display: block;
+        margin: 12px 0 6px;
+        font-weight: bold;
+        color: var(--gold);
+      }
+
+      input,
+      select {
+        width: 100%;
+        padding: 12px;
+        border-radius: 8px;
+        border: none;
+        font-size: 1rem;
+        margin-bottom: 15px;
+        outline: none;
+      }
+
+      input:focus,
+      select:focus {
+        border: 2px solid var(--gold);
+      }
+
+      .btn {
+        width: 100%;
+        padding: 14px;
+        background: var(--gold);
+        color: var(--dark-blue);
+        border: none;
+        border-radius: 8px;
+        font-size: 1.1rem;
+        font-weight: bold;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        margin-top: 10px;
+      }
+
+      .btn:hover {
+        background: #b08a57;
+        color: var(--white);
+      }
+    </style>
+  </head>
+  <body>
+    <header class="navbar">
+      <div class="logo"><span class="q">Q</span>Ventor</div>
+    </header>
+
+    <button
+      class="back-btn"
+      onclick="window.location.href='/html/product-details.html'"
+    >
+      ⬅ Back
+    </button>
+
+    <h1>Add Import Record</h1>
+
+    <div class="form-container">
+      <form id="importForm">
+        <label for="documentNumber">Document Number</label>
+        <input type="text" id="documentNumber" required />
+
+        <label for="date">Date of Import</label>
+        <input type="date" id="importDate" required />
+
+        <label for="status">Status</label>
+        <select id="status" required>
+          <option value="Ordered">Ordered</option>
+          <option value="Received">Received</option>
+          <option value="Done">Done</option>
+        </select>
+
+        <label for="quantityOrdered">Quantity Ordered</label>
+        <input type="number" id="quantityOrdered" required />
+
+        <label for="vendorEntityId">Vendor Entity ID</label>
+        <input type="text" id="vendorEntityId" required />
+
+        <label for="vendorName">Vendor Name</label>
+        <input type="text" id="vendorName" required />
+
+        <label for="vendorEmail">Vendor Email</label>
+        <input type="text" id="vendorEmail" required />
+
+        <label for="quantityBilled">Quantity Billed</label>
+        <input type="number" id="quantityBilled" required />
+
+        <label for="quantityReceived">Quantity Received</label>
+        <input type="number" id="quantityReceived" required />
+
+        <button type="submit" class="btn">💾 Save Import</button>
+      </form>
+    </div>
+
+    <script src="/js/add-import.js"></script>
+  </body>
+</html>
