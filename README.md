@@ -8,3 +8,4 @@
 ##### 3. Admin panel for CRUD operations on items.
 ##### 4. A unique QR code is generated for each new item placed on the shelf.
 ##### 5. Employees scan QR codes to view detailed item information (name, description, import/export history, profit metrics, and storage location). 
+<img width="2159" height="1169" alt="image" src="https://github.com/user-attachments/assets/f523ef82-06fe-4f17-85a9-75def0c9f308" />
